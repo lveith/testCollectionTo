@@ -1,5 +1,5 @@
 //%attributes = {}
-  // PM: "collectionToMd"
+  // PM: "collectionToTxt"
 
 C_COLLECTION:C1488($col;$1)
 C_TEXT:C284($nameInfo;$2)
@@ -33,11 +33,19 @@ Else
 	$timeInfo:=String:C10(Current date:C33;System date long:K1:3)+" "+Lowercase:C14(String:C10(Current time:C178;HH MM AM PM:K7:5))
 End if 
 
+C_TEXT:C284($lineBreak)
+If (Is macOS:C1572)
+	$lineBreak:=Char:C90(Line feed:K15:40)
+Else 
+	$lineBreak:=Char:C90(Carriage return:K15:38)+Char:C90(Line feed:K15:40)
+End if 
+
 $srcTxtStart:=""
-$srcTxtStart:=$srcTxtStart+Char:C90(Line feed:K15:40)
-$srcTxtStart:=$srcTxtStart+"# "+$nameInfo+Char:C90(Line feed:K15:40)
-$srcTxtStart:=$srcTxtStart+"*"+$timeInfo+"*"+Char:C90(Line feed:K15:40)
-$srcTxtStart:=$srcTxtStart+Char:C90(Line feed:K15:40)
+If (False:C215)  // ...set it to true if a title is wished...
+	$srcTxtStart:=$srcTxtStart+$nameInfo+$lineBreak
+	$srcTxtStart:=$srcTxtStart+$timeInfo+$lineBreak
+	$srcTxtStart:=$srcTxtStart+$lineBreak
+End if 
 
 $srcTxtEnd:=""
 
@@ -52,26 +60,26 @@ Else
 	$colKeys:=New collection:C1472
 End if 
 $rowPrefix:=""
-$rowSuffix:="|"
-$cellPrefix:="| "
-$cellSuffix:=" "
-$cellSeparator:=""
-$rowSeparator:=Char:C90(Line feed:K15:40)
-$headRowTxt:=$rowPrefix+$cellPrefix+$colKeys.join($cellSuffix+$cellSeparator+$cellPrefix)+$cellSuffix+$rowSuffix+$rowSeparator+("| :---: "*$colKeys.length)+"|"+$rowSeparator
+$rowSuffix:=""
+$cellPrefix:="\""
+$cellSuffix:="\""
+$cellSeparator:=Char:C90(Tab:K15:37)
+$rowSeparator:=$lineBreak
+$headRowTxt:=$rowPrefix+$cellPrefix+$colKeys.join($cellSuffix+$cellSeparator+$cellPrefix)+$cellSuffix+$rowSuffix+$rowSeparator
 
 $rowPrefix:=""
-$rowSuffix:="|"
-$cellPrefix:="| "
-$cellSuffix:=" "
-$cellSeparator:=""
-$rowSeparator:=Char:C90(Line feed:K15:40)
+$rowSuffix:=""
+$cellPrefix:="\""
+$cellSuffix:="\""
+$cellSeparator:=Char:C90(Tab:K15:37)
+$rowSeparator:=$lineBreak
 $colBodyRow:=$col.map("colMapJoin";$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparator;$colKeys)
 $bodyRowsTxt:=$colBodyRow.join($rowSeparator)
 
 $srcTxt:=$srcTxtStart+$headRowTxt+$bodyRowsTxt+$srcTxtEnd
 
 ON ERR CALL:C155("onErrDocument")
-$docRef:=Create document:C266($nameInfo+".md")
+$docRef:=Create document:C266($nameInfo+".txt")
 If (OK=1)  // If document has been created successfully
 	CLOSE DOCUMENT:C267($docRef)
 	TEXT TO DOCUMENT:C1237(Document;$srcTxt;"UTF-8";Document with LF:K24:22)

@@ -17,7 +17,7 @@ If (Count parameters:C259>0)
 Else   // ok, than use any test data
 	$col:=New collection:C1472
 	For ($i;1;1000)
-		$col.push(New object:C1471("column1";Random:C100;"column2";Random:C100;"column3";Random:C100;"column4";Random:C100;"column5";Random:C100))
+		$col.push(New object:C1471("column1";$col.length+1;"column2";Random:C100;"column3";Random:C100;"column4";Random:C100;"column5";Random:C100))
 	End for 
 End if 
 
@@ -79,7 +79,7 @@ $cellPrefix:="<th>"
 $cellSuffix:="</th>"
 $cellSeparator:=""
 $rowSeparator:=""
-$headRowTxt:=$rowPrefix+$cellPrefix+$colKeys.join($cellSuffix+$cellPrefix)+$cellSuffix+$rowSuffix+$rowSeparator
+$headRowTxt:=$rowPrefix+$cellPrefix+$colKeys.join($cellSuffix+$cellSeparator+$cellPrefix)+$cellSuffix+$rowSuffix+$rowSeparator
 
 $rowPrefix:="<tr class=\"collectionLine\">"
 $rowSuffix:="</tr>"
