@@ -1,4 +1,4 @@
-# testCollectionTo
+# testCollectionTo (4Dv18R3)
 Only a test example for collection convert to HTML, CSV, MD, TXT and more with col.map("colMapJoin")
 
 ### collections of values (one not named column)
