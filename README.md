@@ -14,7 +14,7 @@ $col.map("colMapJoin";$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparat
 ### Examples in test-dialog
 - Collection to HTML (ok)
 - Collection to CSV (not available, wait until next version)
-- Collection to MD (not available, wait until next version)
+- Collection to MD (ok)
 - Collection to TXT (not available, wait until next version)
 
 (...more use-case examples comming soon...)
