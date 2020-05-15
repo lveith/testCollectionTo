@@ -32,5 +32,6 @@ C_TEXT:C284(colMapJoin ;$4)
 C_TEXT:C284(colMapJoin ;$5)
 C_TEXT:C284(colMapJoin ;$6)
 C_COLLECTION:C1488(colMapJoin ;$7)
+C_COLLECTION:C1488(colMapJoin ;$8)
 
   // - EOF -

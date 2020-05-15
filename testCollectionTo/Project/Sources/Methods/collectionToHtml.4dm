@@ -17,7 +17,7 @@ If (Count parameters:C259>0)
 Else   // ok, than use any test data
 	$col:=New collection:C1472
 	For ($i;1;1000)
-		$col.push(New object:C1471("column1";$col.length+1;"column2";Random:C100;"column3";Random:C100;"column4";Random:C100;"column5";Random:C100))
+		$col.push(New object:C1471("column1";$col.length+1;"column2";String:C10(Random:C100);"column3";String:C10(Random:C100);"column4";String:C10(Random:C100);"column5";String:C10(Random:C100)))
 	End for 
 End if 
 
@@ -65,6 +65,15 @@ $srcTxtEnd:=$srcTxtEnd+"</html>"
 
 $txtResult:=""
 
+C_COLLECTION:C1488($colReplace)
+$colReplace:=New collection:C1472
+$colReplace.push(New object:C1471("from";"&";"to";"&amp;"))  // "&" must be first one in collection !!!
+$colReplace.push(New object:C1471("from";"<";"to";"&lt;"))
+$colReplace.push(New object:C1471("from";">";"to";"&gt;"))
+$colReplace.push(New object:C1471("from";"\r\n";"to";"<br>"))
+$colReplace.push(New object:C1471("from";"\r";"to";"<br>"))
+$colReplace.push(New object:C1471("from";"\n";"to";"<br>"))
+
 If ($col.length>0)
 	If (Value type:C1509($col[0])=Is object:K8:27)
 		$colKeys:=OB Keys:C1719($col[0])
@@ -87,7 +96,7 @@ $cellPrefix:="<td>"
 $cellSuffix:="</td>"
 $cellSeparator:=""
 $rowSeparator:=""
-$colBodyRow:=$col.map("colMapJoin";$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparator;$colKeys)
+$colBodyRow:=$col.map("colMapJoin";$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparator;$colReplace;$colKeys)
 $bodyRowsTxt:=$colBodyRow.join($rowSeparator)
 
 $srcTxt:=$srcTxtStart+$headRowTxt+$bodyRowsTxt+$srcTxtEnd
