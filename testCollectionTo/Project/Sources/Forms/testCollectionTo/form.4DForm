@@ -106,6 +106,7 @@
 					"hideExtraBlankRows": false,
 					"sizingX": "grow",
 					"sizingY": "grow",
+					"showFooters": false,
 					"columns": [
 						{
 							"header": {

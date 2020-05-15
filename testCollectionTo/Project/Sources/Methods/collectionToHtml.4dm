@@ -33,9 +33,6 @@ Else
 	$timeInfo:=String:C10(Current date:C33;System date long:K1:3)+" "+Lowercase:C14(String:C10(Current time:C178;HH MM AM PM:K7:5))
 End if 
 
-$nameInfo:="myCollectionA"
-$timeInfo:=String:C10(Current date:C33;System date long:K1:3)+" "+Lowercase:C14(String:C10(Current time:C178;HH MM AM PM:K7:5))
-
 $srcTxtStart:=""
 $srcTxtStart:=$srcTxtStart+"<!DOCTYPE html>"
 $srcTxtStart:=$srcTxtStart+"<html>"
@@ -59,7 +56,8 @@ $srcTxtStart:=$srcTxtStart+"<div class=\"content\">"
 $srcTxtStart:=$srcTxtStart+"<table class=\"collectionTable\">"
 $srcTxtStart:=$srcTxtStart+"<tbody>"
 
-$srcTxtEnd:="</tbody>"
+$srcTxtEnd:=""
+$srcTxtEnd:=$srcTxtEnd+"</tbody>"
 $srcTxtEnd:=$srcTxtEnd+"</table>"
 $srcTxtEnd:=$srcTxtEnd+"</div>"
 $srcTxtEnd:=$srcTxtEnd+"</body>"
@@ -81,7 +79,7 @@ $cellPrefix:="<th>"
 $cellSuffix:="</th>"
 $cellSeparator:=""
 $rowSeparator:=""
-$headRowTxt:=$rowPrefix+$cellPrefix+$colKeys.join($cellSuffix+$cellPrefix)+$cellSuffix+$rowSuffix
+$headRowTxt:=$rowPrefix+$cellPrefix+$colKeys.join($cellSuffix+$cellPrefix)+$cellSuffix+$rowSuffix+$rowSeparator
 
 $rowPrefix:="<tr class=\"collectionLine\">"
 $rowSuffix:="</tr>"
