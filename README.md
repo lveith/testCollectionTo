@@ -2,10 +2,14 @@
 Only a test example for collection convert to HTML, CSV, MD, TXT and more with col.map("colMapJoin")
 
 ### collections of values (one not named column)
+```
 $col.map("colMapJoin";$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparator)
+```
 
 ### collections of objects (multi columns with nameKey)
+```
 $col.map("colMapJoin";$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparator;$colKeys)
+```
 
 ### Examples in test-dialog
 - Collection to HTML (ok)
