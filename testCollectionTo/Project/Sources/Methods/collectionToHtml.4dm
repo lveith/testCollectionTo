@@ -70,6 +70,9 @@ $colReplace:=New collection:C1472
 $colReplace.push(New object:C1471("from";"&";"to";"&amp;"))  // "&" must be first one in collection !!!
 $colReplace.push(New object:C1471("from";"<";"to";"&lt;"))
 $colReplace.push(New object:C1471("from";">";"to";"&gt;"))
+$colReplace.push(New object:C1471("from";"\"";"to";"&quot;"))
+$colReplace.push(New object:C1471("from";" ";"to";"&nbsp;"))
+$colReplace.push(New object:C1471("from";"\t";"to";"&nbsp;"))
 $colReplace.push(New object:C1471("from";"\r\n";"to";"<br>"))
 $colReplace.push(New object:C1471("from";"\r";"to";"<br>"))
 $colReplace.push(New object:C1471("from";"\n";"to";"<br>"))
