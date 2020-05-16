@@ -50,7 +50,7 @@ Else
 			$txt:=Replace string:C233($txt;$obj.from;$obj.to)
 		End for each 
 	End if 
-	$1.result:=$4+$txt+$5+$6
+	$1.result:=$1.result+$4+$txt+$5+$6
 	
 End if 
 

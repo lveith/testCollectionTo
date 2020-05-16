@@ -16,9 +16,15 @@ If (Count parameters:C259>0)
 	$col:=$1.copy()
 Else   // ok, than use any test data
 	$col:=New collection:C1472
-	For ($i;1;1000)
-		$col.push(New object:C1471("column1";$col.length+1;"column2";String:C10(Random:C100);"column3";String:C10(Random:C100);"column4";String:C10(Random:C100);"column5";String:C10(Random:C100)))
-	End for 
+	If (True:C214)
+		For ($i;1;1000)
+			$col.push(New object:C1471("column1";$col.length+1;"column2";String:C10(Random:C100);"column3";String:C10(Random:C100);"column4";String:C10(Random:C100);"column5";String:C10(Random:C100)))
+		End for 
+	Else 
+		For ($i;1;1000)
+			$col.push($i)
+		End for 
+	End if 
 End if 
 
 If (Count parameters:C259>1)
@@ -77,29 +83,35 @@ $colReplace.push(New object:C1471("from";"\r\n";"to";"<br>"))
 $colReplace.push(New object:C1471("from";"\r";"to";"<br>"))
 $colReplace.push(New object:C1471("from";"\n";"to";"<br>"))
 
+$headRowTxt:=""
+$colKeys:=New collection:C1472
 If ($col.length>0)
 	If (Value type:C1509($col[0])=Is object:K8:27)
 		$colKeys:=OB Keys:C1719($col[0])
-	Else 
 	End if 
-Else 
-	$colKeys:=New collection:C1472
 End if 
-$rowPrefix:="<tr class=\"collectionHeadLine\">"
-$rowSuffix:="</tr>"
-$cellPrefix:="<th>"
-$cellSuffix:="</th>"
-$cellSeparator:=""
-$rowSeparator:=""
-$headRowTxt:=$rowPrefix+$cellPrefix+$colKeys.join($cellSuffix+$cellSeparator+$cellPrefix)+$cellSuffix+$rowSuffix+$rowSeparator
+If ($colKeys.length>0)
+	$rowPrefix:="<tr class=\"collectionHeadLine\">"
+	$rowSuffix:="</tr>"
+	$cellPrefix:="<th>"
+	$cellSuffix:="</th>"
+	$cellSeparator:=""
+	$rowSeparator:=""
+	$headRowTxt:=$rowPrefix+$cellPrefix+$colKeys.join($cellSuffix+$cellSeparator+$cellPrefix)+$cellSuffix+$rowSuffix+$rowSeparator
+End if 
 
+$bodyRowsTxt:=""
 $rowPrefix:="<tr class=\"collectionLine\">"
 $rowSuffix:="</tr>"
 $cellPrefix:="<td>"
 $cellSuffix:="</td>"
 $cellSeparator:=""
 $rowSeparator:=""
-$colBodyRow:=$col.map("colMapJoin";$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparator;$colReplace;$colKeys)
+If ($colKeys.length>0)
+	$colBodyRow:=$col.map("colMapJoin";$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparator;$colReplace;$colKeys)
+Else 
+	$colBodyRow:=$col.map("colMapJoin";$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparator;$colReplace)
+End if 
 $bodyRowsTxt:=$colBodyRow.join($rowSeparator)
 
 $srcTxt:=$srcTxtStart+$headRowTxt+$bodyRowsTxt+$srcTxtEnd
