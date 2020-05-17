@@ -22,4 +22,4 @@ $col.map("colMapJoin";$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparat
 
 (...more use-case examples comming soon...)
 
-![github-small](https://user-images.githubusercontent.com/65073460/82057765-1f3bf180-96c4-11ea-9236-91c385a08e2c.png)
+![github-small](https://user-images.githubusercontent.com/65073460/82151271-f8fc8a00-985a-11ea-9029-28c73f09ffc5.png)
