@@ -142,9 +142,11 @@ If ($withCmdList)
 																																$id:="C"+$cmdNo
 																																$attributes.cmdSyntax:=$lastCmdTxt
 																																$attributes.cmdDesc:=$cmdTxt
-																																$txtAttr:=JSON Stringify:C1217($attributes;*)
-																																$resultCol.push(New object:C1471("column1";$resultCol.length;"column2";$commandName;"column3";$id;"column4";"command";"column5";$theme;"column6";$contents;"column7";$txtAttr))
-																																APPEND TO ARRAY:C911($arrCmdNo;Num:C11($cmdNo))
+																																If (($commandName#"") & ($commandName#"_4D"))
+																																	$txtAttr:=JSON Stringify:C1217($attributes;*)
+																																	$resultCol.push(New object:C1471("column1";$resultCol.length+1;"column2";$commandName;"column3";$id;"column4";"command";"column5";$theme;"column6";$contents;"column7";$txtAttr))
+																																	APPEND TO ARRAY:C911($arrCmdNo;Num:C11($cmdNo))
+																																End if 
 																															End if 
 																															
 																													End case 
@@ -186,8 +188,10 @@ If ($withCmdList)
 					$id:="C"+String:C10($commandNum)
 					$contents:=$commandName+":C"+String:C10($commandNum)
 					$attributes:=New object:C1471("threadsafe";$threadsafe)
-					$txtAttr:=JSON Stringify:C1217($attributes;*)
-					$resultCol.push(New object:C1471("column1";$resultCol.length;"column2";$commandName;"column3";$id;"column4";"command";"column5";$theme;"column6";$contents;"column7";$txtAttr))
+					If (($commandName#"") & ($commandName#"_4D"))
+						$txtAttr:=JSON Stringify:C1217($attributes;*)
+						$resultCol.push(New object:C1471("column1";$resultCol.length+1;"column2";$commandName;"column3";$id;"column4";"command";"column5";$theme;"column6";$contents;"column7";$txtAttr))
+					End if 
 				End if 
 			End if 
 		End if 
@@ -388,7 +392,7 @@ If ($withConstList)
 					$formula:=Formula from string:C1601($contents)
 					$result:="value="+String:C10($formula.call())
 				End if 
-				$resultCol.push(New object:C1471("column1";$resultCol.length;"column2";$constantName;"column3";"K"+String:C10($constantThemeNum)+":"+String:C10($constantNum);"column4";"constant";"column5";$theme;"column6";$contents;"column7";$result))
+				$resultCol.push(New object:C1471("column1";$resultCol.length+1;"column2";$constantName;"column3";"K"+String:C10($constantThemeNum)+":"+String:C10($constantNum);"column4";"constant";"column5";$theme;"column6";$contents;"column7";$result))
 			Else 
 				Case of 
 					: ($constantThemeNum=81)

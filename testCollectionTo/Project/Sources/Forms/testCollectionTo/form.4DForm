@@ -92,7 +92,7 @@
 				"List Box": {
 					"type": "listbox",
 					"left": 10,
-					"top": 54,
+					"top": 52,
 					"width": 871,
 					"height": 386,
 					"events": [
@@ -110,11 +110,17 @@
 					"headerHeight": "1em",
 					"rowHeight": "3em",
 					"verticalAlign": "top",
+					"alternateFill": "#D6D7FF",
+					"fill": "#E6E6FF",
+					"horizontalLineStroke": "#FFFFFF",
+					"verticalLineStroke": "#FFFFFF",
 					"columns": [
 						{
 							"header": {
 								"text": "column1",
-								"name": "Kopf1"
+								"name": "Kopf1",
+								"fontWeight": "normal",
+								"stroke": "#8E96E8"
 							},
 							"name": "Spalte1",
 							"footer": {
@@ -130,7 +136,9 @@
 						{
 							"header": {
 								"name": "Kopf2",
-								"text": "column2"
+								"text": "column2",
+								"fontWeight": "normal",
+								"stroke": "#8E96E8"
 							},
 							"name": "Spalte2",
 							"footer": {
@@ -146,7 +154,9 @@
 						{
 							"header": {
 								"name": "Kopf3",
-								"text": "column3"
+								"text": "column3",
+								"fontWeight": "normal",
+								"stroke": "#8E96E8"
 							},
 							"name": "Spalte3",
 							"footer": {
@@ -162,7 +172,9 @@
 						{
 							"header": {
 								"name": "Kopf4",
-								"text": "column4"
+								"text": "column4",
+								"fontWeight": "normal",
+								"stroke": "#8E96E8"
 							},
 							"name": "Spalte4",
 							"footer": {
@@ -178,7 +190,9 @@
 						{
 							"header": {
 								"name": "Kopf5",
-								"text": "column5"
+								"text": "column5",
+								"fontWeight": "normal",
+								"stroke": "#8E96E8"
 							},
 							"name": "Spalte5",
 							"footer": {
@@ -194,7 +208,9 @@
 						{
 							"header": {
 								"name": "Kopf6",
-								"text": "column6"
+								"text": "column6",
+								"fontWeight": "normal",
+								"stroke": "#8E96E8"
 							},
 							"name": "Spalte6",
 							"dataSource": "This:C1470.column6",
@@ -208,7 +224,9 @@
 						{
 							"header": {
 								"name": "Kopf7",
-								"text": "column7"
+								"text": "column7",
+								"fontWeight": "normal",
+								"stroke": "#8E96E8"
 							},
 							"name": "Spalte7",
 							"dataSource": "This:C1470.column7",
