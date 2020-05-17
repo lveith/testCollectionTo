@@ -38,7 +38,7 @@
 					"type": "button",
 					"text": "#",
 					"top": 1,
-					"left": 721,
+					"left": 821,
 					"width": 27,
 					"height": 24,
 					"events": [
@@ -55,7 +55,7 @@
 					"type": "button",
 					"text": "✗",
 					"top": 1,
-					"left": 754,
+					"left": 854,
 					"width": 27,
 					"height": 24,
 					"events": [
@@ -93,8 +93,8 @@
 					"type": "listbox",
 					"left": 10,
 					"top": 54,
-					"width": 771,
-					"height": 246,
+					"width": 871,
+					"height": 386,
 					"events": [
 						"onClick",
 						"onHeaderClick",
@@ -107,6 +107,9 @@
 					"sizingX": "grow",
 					"sizingY": "grow",
 					"showFooters": false,
+					"headerHeight": "1em",
+					"rowHeight": "3em",
+					"verticalAlign": "top",
 					"columns": [
 						{
 							"header": {
@@ -119,8 +122,8 @@
 							},
 							"dataSource": "This:C1470.column1",
 							"dataSourceTypeHint": "text",
-							"width": 150,
-							"minWidth": 80,
+							"width": 80,
+							"minWidth": 60,
 							"maxWidth": 300
 						},
 						{
@@ -134,7 +137,7 @@
 							},
 							"dataSource": "This:C1470.column2",
 							"dataSourceTypeHint": "text",
-							"width": 150,
+							"width": 231,
 							"minWidth": 80,
 							"maxWidth": 300
 						},
@@ -149,8 +152,8 @@
 							},
 							"dataSource": "This:C1470.column3",
 							"dataSourceTypeHint": "text",
-							"width": 150,
-							"minWidth": 80,
+							"width": 80,
+							"minWidth": 60,
 							"maxWidth": 300
 						},
 						{
@@ -164,8 +167,8 @@
 							},
 							"dataSource": "This:C1470.column4",
 							"dataSourceTypeHint": "text",
-							"width": 150,
-							"minWidth": 80,
+							"width": 80,
+							"minWidth": 60,
 							"maxWidth": 300
 						},
 						{
@@ -182,6 +185,29 @@
 							"width": 150,
 							"minWidth": 80,
 							"maxWidth": 300
+						},
+						{
+							"header": {
+								"name": "Kopf6",
+								"text": "column6"
+							},
+							"name": "Spalte6",
+							"dataSource": "This:C1470.column6",
+							"footer": {
+								"name": "Fußteil6"
+							}
+						},
+						{
+							"header": {
+								"name": "Kopf7",
+								"text": "column7"
+							},
+							"name": "Spalte7",
+							"dataSource": "This:C1470.column7",
+							"footer": {
+								"name": "Fußteil7"
+							},
+							"width": 160
 						}
 					]
 				},
@@ -226,6 +252,21 @@
 					"method": "ObjectMethods/oBtnColToTXT.4dm",
 					"class": "",
 					"stroke": "automatic"
+				},
+				"oBtnGenData": {
+					"type": "button",
+					"text": "Generate data",
+					"top": 6,
+					"left": 649,
+					"width": 132,
+					"height": 37,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/oBtnGenData.4dm",
+					"class": "",
+					"stroke": "#9437FF",
+					"fontStyle": "italic"
 				}
 			},
 			"entryOrder": [
@@ -233,7 +274,8 @@
 				"oBtnColToCSV",
 				"oBtnColToMD",
 				"oBtnColToTXT",
-				"List Box"
+				"List Box",
+				"oBtnGenData"
 			]
 		}
 	],

@@ -34,4 +34,9 @@ C_TEXT:C284(colMapJoin ;$6)
 C_COLLECTION:C1488(colMapJoin ;$7)
 C_COLLECTION:C1488(colMapJoin ;$8)
 
+  //y4DCmdAndConst
+C_COLLECTION:C1488(y4DCmdAndConst ;$0)
+C_BOOLEAN:C305(y4DCmdAndConst ;$1)
+C_BOOLEAN:C305(y4DCmdAndConst ;$2)
+
   // - EOF -
