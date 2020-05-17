@@ -124,7 +124,8 @@
 							"dataSourceTypeHint": "text",
 							"width": 80,
 							"minWidth": 60,
-							"maxWidth": 300
+							"maxWidth": 300,
+							"wordwrap": "normal"
 						},
 						{
 							"header": {
@@ -139,7 +140,8 @@
 							"dataSourceTypeHint": "text",
 							"width": 231,
 							"minWidth": 80,
-							"maxWidth": 300
+							"maxWidth": 300,
+							"wordwrap": "normal"
 						},
 						{
 							"header": {
@@ -154,7 +156,8 @@
 							"dataSourceTypeHint": "text",
 							"width": 80,
 							"minWidth": 60,
-							"maxWidth": 300
+							"maxWidth": 300,
+							"wordwrap": "normal"
 						},
 						{
 							"header": {
@@ -169,7 +172,8 @@
 							"dataSourceTypeHint": "text",
 							"width": 80,
 							"minWidth": 60,
-							"maxWidth": 300
+							"maxWidth": 300,
+							"wordwrap": "normal"
 						},
 						{
 							"header": {
@@ -184,7 +188,8 @@
 							"dataSourceTypeHint": "text",
 							"width": 150,
 							"minWidth": 80,
-							"maxWidth": 300
+							"maxWidth": 300,
+							"wordwrap": "normal"
 						},
 						{
 							"header": {
@@ -195,7 +200,10 @@
 							"dataSource": "This:C1470.column6",
 							"footer": {
 								"name": "Fußteil6"
-							}
+							},
+							"wordwrap": "normal",
+							"width": 220,
+							"minWidth": 80
 						},
 						{
 							"header": {
@@ -207,7 +215,9 @@
 							"footer": {
 								"name": "Fußteil7"
 							},
-							"width": 160
+							"width": 200,
+							"wordwrap": "normal",
+							"minWidth": 80
 						}
 					]
 				},

@@ -2,6 +2,7 @@
   // PM: "colMapJoin"
   // colResult:=col.map("colMapJoin";rowPrefix;rowSuffix;cellPrefix;cellSuffix;cellSeparator;colReplace;colKeys)
   // Debug-Note: To do stop col.map() loop set $1.stop:=True
+  // Changed: 17.05.20, 17:01:06
 
 C_OBJECT:C1216($1)  // col-item itself
 C_TEXT:C284($2)  // rowPrefix
@@ -30,7 +31,16 @@ $1.result:=$2
 If (Count parameters:C259>7)
 	$length:=$8.length-1
 	For ($i;0;$length)
-		$txt:=String:C10($1.value[$8[$i]])
+		
+		Case of 
+			: (Value type:C1509($1.value[$8[$i]])=Is collection:K8:32)
+				$txt:=JSON Stringify:C1217($1.value[$8[$i]];*)
+			: (Value type:C1509($1.value[$8[$i]])=Is object:K8:27)
+				$txt:=JSON Stringify:C1217($1.value[$8[$i]];*)
+			Else 
+				$txt:=String:C10($1.value[$8[$i]])
+		End case 
+		
 		If ($doReplace)
 			For each ($obj;$7)
 				$txt:=Replace string:C233($txt;$obj.from;$obj.to)
@@ -44,7 +54,16 @@ If (Count parameters:C259>7)
 	End for 
 	
 Else 
-	$txt:=String:C10($1.value)
+	
+	Case of 
+		: (Value type:C1509($1.value)=Is collection:K8:32)
+			$txt:=JSON Stringify:C1217($1.value;*)
+		: (Value type:C1509($1.value)=Is object:K8:27)
+			$txt:=JSON Stringify:C1217($1.value;*)
+		Else 
+			$txt:=String:C10($1.value)
+	End case 
+	
 	If ($doReplace)
 		For each ($obj;$7)
 			$txt:=Replace string:C233($txt;$obj.from;$obj.to)
