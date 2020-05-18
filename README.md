@@ -20,6 +20,4 @@ $col.map("colMapJoin";$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparat
 - Collection to MD
 - Collection to TXT
 
-(...more use-case examples comming soon...)
-
 ![github-small](https://user-images.githubusercontent.com/65073460/82241289-2b31e880-993c-11ea-88c7-1d04a1fa10f8.png)
