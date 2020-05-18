@@ -9,7 +9,7 @@ C_LONGINT:C283($i)
 C_TIME:C306($docRef)
 C_TEXT:C284($srcTxt)
 C_TEXT:C284($srcTxtStart;$srcTxtEnd)
-C_COLLECTION:C1488($colHeadRow;$colBodyRow;$colKeys)
+C_COLLECTION:C1488($colHeadRow;$colBodyRow;$colKeys;$colKeysHead)
 C_TEXT:C284($headRowTxt;$bodyRowsTxt;$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparator;$rowSeparator)
 
 If (Count parameters:C259>0)
@@ -38,6 +38,7 @@ If (Count parameters:C259>2)  // $3 or automatic standard timeInfo
 Else 
 	$timeInfo:=String:C10(Current date:C33;System date long:K1:3)+" "+Lowercase:C14(String:C10(Current time:C178;HH MM AM PM:K7:5))
 End if 
+$timeInfo:=yGetTimeline ($timeInfo)
 
 C_TEXT:C284($lineBreak)
 If (Is macOS:C1572)
@@ -66,22 +67,19 @@ $colReplace.push(New object:C1471("from";"\"";"to";"\"\""))
   // $colReplace.push(New object("from";"\n";"to";" "))
 
 $headRowTxt:=""
-$colKeys:=New collection:C1472
-If ($col.length>0)
-	If (Value type:C1509($col[0])=Is object:K8:27)
-		$colKeys:=OB Keys:C1719($col[0])
-	End if 
-End if 
-If ($colKeys.length>0)
+$colKeysHead:=yColKeysCollectionTo (Form:C1466.colKeys;True:C214)  // Get active items titles
+If ($colKeysHead.length>0)
 	$rowPrefix:=""
 	$rowSuffix:=""
 	$cellPrefix:="\""
 	$cellSuffix:="\""
 	$cellSeparator:=";"
 	$rowSeparator:=$lineBreak
-	$headRowTxt:=$rowPrefix+$cellPrefix+$colKeys.join($cellSuffix+$cellSeparator+$cellPrefix)+$cellSuffix+$rowSuffix+$rowSeparator
+	$headRowTxt:=$rowPrefix+$cellPrefix+$colKeysHead.join($cellSuffix+$cellSeparator+$cellPrefix)+$cellSuffix+$rowSuffix+$rowSeparator
 End if 
 
+$bodyRowsTxt:=""
+$colKeys:=yColKeysCollectionTo (Form:C1466.colKeys;False:C215)  // Get active items keys
 $rowPrefix:=""
 $rowSuffix:=""
 $cellPrefix:="\""

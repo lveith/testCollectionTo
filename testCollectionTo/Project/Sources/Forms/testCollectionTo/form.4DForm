@@ -5,7 +5,7 @@
 	},
 	"windowSizingX": "variable",
 	"windowSizingY": "variable",
-	"windowMinWidth": 724,
+	"windowMinWidth": 871,
 	"windowMinHeight": 0,
 	"windowMaxWidth": 32767,
 	"windowMaxHeight": 32767,
@@ -92,7 +92,7 @@
 				"List Box": {
 					"type": "listbox",
 					"left": 10,
-					"top": 52,
+					"top": 244,
 					"width": 871,
 					"height": 386,
 					"events": [
@@ -108,17 +108,18 @@
 					"sizingY": "grow",
 					"showFooters": false,
 					"headerHeight": "1em",
-					"rowHeight": "3em",
+					"rowHeight": "1em",
 					"verticalAlign": "top",
 					"alternateFill": "#D6D7FF",
 					"fill": "#E6E6FF",
 					"horizontalLineStroke": "#FFFFFF",
 					"verticalLineStroke": "#FFFFFF",
+					"resizingMode": "legacy",
 					"columns": [
 						{
 							"header": {
 								"text": "column1",
-								"name": "Kopf1",
+								"name": "oColumnHead1",
 								"fontWeight": "normal",
 								"stroke": "#8E96E8"
 							},
@@ -131,11 +132,11 @@
 							"width": 80,
 							"minWidth": 60,
 							"maxWidth": 300,
-							"wordwrap": "normal"
+							"wordwrap": "none"
 						},
 						{
 							"header": {
-								"name": "Kopf2",
+								"name": "oColumnHead2",
 								"text": "column2",
 								"fontWeight": "normal",
 								"stroke": "#8E96E8"
@@ -147,13 +148,13 @@
 							"dataSource": "This:C1470.column2",
 							"dataSourceTypeHint": "text",
 							"width": 231,
-							"minWidth": 80,
+							"minWidth": 165,
 							"maxWidth": 300,
-							"wordwrap": "normal"
+							"wordwrap": "none"
 						},
 						{
 							"header": {
-								"name": "Kopf3",
+								"name": "oColumnHead3",
 								"text": "column3",
 								"fontWeight": "normal",
 								"stroke": "#8E96E8"
@@ -167,11 +168,11 @@
 							"width": 80,
 							"minWidth": 60,
 							"maxWidth": 300,
-							"wordwrap": "normal"
+							"wordwrap": "none"
 						},
 						{
 							"header": {
-								"name": "Kopf4",
+								"name": "oColumnHead4",
 								"text": "column4",
 								"fontWeight": "normal",
 								"stroke": "#8E96E8"
@@ -185,11 +186,11 @@
 							"width": 80,
 							"minWidth": 60,
 							"maxWidth": 300,
-							"wordwrap": "normal"
+							"wordwrap": "none"
 						},
 						{
 							"header": {
-								"name": "Kopf5",
+								"name": "oColumnHead5",
 								"text": "column5",
 								"fontWeight": "normal",
 								"stroke": "#8E96E8"
@@ -200,14 +201,14 @@
 							},
 							"dataSource": "This:C1470.column5",
 							"dataSourceTypeHint": "text",
-							"width": 150,
+							"width": 165,
 							"minWidth": 80,
 							"maxWidth": 300,
-							"wordwrap": "normal"
+							"wordwrap": "none"
 						},
 						{
 							"header": {
-								"name": "Kopf6",
+								"name": "oColumnHead6",
 								"text": "column6",
 								"fontWeight": "normal",
 								"stroke": "#8E96E8"
@@ -217,13 +218,13 @@
 							"footer": {
 								"name": "Fußteil6"
 							},
-							"wordwrap": "normal",
+							"wordwrap": "none",
 							"width": 220,
 							"minWidth": 80
 						},
 						{
 							"header": {
-								"name": "Kopf7",
+								"name": "oColumnHead7",
 								"text": "column7",
 								"fontWeight": "normal",
 								"stroke": "#8E96E8"
@@ -231,10 +232,43 @@
 							"name": "Spalte7",
 							"dataSource": "This:C1470.column7",
 							"footer": {
+								"name": "Fußteil9"
+							},
+							"width": 170,
+							"wordwrap": "none",
+							"minWidth": 60,
+							"textAlign": "center"
+						},
+						{
+							"header": {
+								"name": "oColumnHead8",
+								"text": "column8",
+								"fontWeight": "normal",
+								"stroke": "#8E96E8"
+							},
+							"name": "Spalte8",
+							"dataSource": "This:C1470.column8",
+							"footer": {
+								"name": "Fußteil8"
+							},
+							"width": 737,
+							"wordwrap": "none",
+							"minWidth": 80
+						},
+						{
+							"header": {
+								"name": "oColumnHead9",
+								"text": "column9",
+								"fontWeight": "normal",
+								"stroke": "#8E96E8"
+							},
+							"name": "Spalte9",
+							"dataSource": "This:C1470.column9",
+							"footer": {
 								"name": "Fußteil7"
 							},
-							"width": 200,
-							"wordwrap": "normal",
+							"width": 999,
+							"wordwrap": "none",
 							"minWidth": 80
 						}
 					]
@@ -295,6 +329,255 @@
 					"class": "",
 					"stroke": "#9437FF",
 					"fontStyle": "italic"
+				},
+				"List Box1": {
+					"type": "listbox",
+					"left": 10,
+					"top": 56,
+					"width": 366,
+					"height": 179,
+					"events": [
+						"onClick",
+						"onHeaderClick",
+						"onDataChange",
+						"onSelectionChange"
+					],
+					"listboxType": "collection",
+					"dataSource": "Form:C1466.colKeys",
+					"hideExtraBlankRows": true,
+					"sizingX": "fixed",
+					"sizingY": "fixed",
+					"showFooters": false,
+					"headerHeight": "1em",
+					"rowHeight": "1em",
+					"verticalAlign": "top",
+					"alternateFill": "#C3FFC2",
+					"fill": "#D5FFD5",
+					"horizontalLineStroke": "#FFFFFF",
+					"verticalLineStroke": "#FFFFFF",
+					"scrollbarHorizontal": "hidden",
+					"scrollbarVertical": "hidden",
+					"borderStyle": "none",
+					"columns": [
+						{
+							"header": {
+								"text": "✅",
+								"name": "oColumnHead10",
+								"fontWeight": "normal",
+								"stroke": "#8E96E8",
+								"fontSize": 10,
+								"verticalAlign": "middle"
+							},
+							"name": "Spalte10",
+							"footer": {
+								"name": "Fußteil10"
+							},
+							"dataSource": "This:C1470.active",
+							"dataSourceTypeHint": "boolean",
+							"width": 40,
+							"minWidth": 40,
+							"maxWidth": 40,
+							"wordwrap": "none",
+							"truncateMode": "withEllipsis",
+							"textAlign": "center",
+							"fontSize": 10,
+							"resizable": false
+						},
+						{
+							"header": {
+								"name": "Kopf1",
+								"text": "sort",
+								"stroke": "#8E96E8",
+								"fontSize": 0,
+								"fontWeight": "bold"
+							},
+							"name": "Spalte13",
+							"width": 42,
+							"minWidth": 42,
+							"maxWidth": 42,
+							"dataSource": "This:C1470.sort",
+							"dataSourceTypeHint": "number",
+							"fontSize": 10,
+							"footer": {
+								"name": "Fußteil13"
+							},
+							"fontWeight": "normal",
+							"resizable": false,
+							"truncateMode": "withEllipsis",
+							"textAlign": "center"
+						},
+						{
+							"header": {
+								"name": "oColumnHead12",
+								"text": "title",
+								"fontWeight": "bold",
+								"stroke": "#8E96E8",
+								"fontSize": 0
+							},
+							"name": "Spalte12",
+							"footer": {
+								"name": "Fußteil12"
+							},
+							"dataSource": "This:C1470.title",
+							"dataSourceTypeHint": "text",
+							"width": 165,
+							"minWidth": 165,
+							"maxWidth": 300,
+							"wordwrap": "none",
+							"fontSize": 10,
+							"resizable": false,
+							"truncateMode": "withEllipsis"
+						},
+						{
+							"header": {
+								"name": "oColumnHead11",
+								"text": "key",
+								"fontWeight": "normal",
+								"stroke": "#8E96E8",
+								"fontSize": 0
+							},
+							"name": "Spalte11",
+							"footer": {
+								"name": "Fußteil11"
+							},
+							"dataSource": "This:C1470.key",
+							"dataSourceTypeHint": "text",
+							"width": 120,
+							"minWidth": 120,
+							"maxWidth": 300,
+							"wordwrap": "none",
+							"enterable": false,
+							"stroke": "#696969",
+							"fill": "#E6FFE6",
+							"alternateFill": "#D7FFD6",
+							"fontSize": 10,
+							"resizable": false,
+							"truncateMode": "withEllipsis"
+						}
+					]
+				},
+				"Eingabe": {
+					"type": "input",
+					"left": 512,
+					"top": 104,
+					"width": 268,
+					"height": 17,
+					"dataSource": "Form:C1466.listname",
+					"sizingX": "grow",
+					"entryFilter": "&\"a-z;A-Z;0-9;ä;ö;ü;ß;Ä;Ö;Ü; ;,;-;_;+;*;#;$;€;/;(;);[;];=;?;+;!;§;';\""
+				},
+				"Text": {
+					"type": "text",
+					"text": "Name of the list",
+					"top": 104,
+					"left": 405,
+					"width": 102,
+					"height": 17,
+					"fontWeight": "normal"
+				},
+				"Eingabe1": {
+					"type": "input",
+					"left": 512,
+					"top": 134,
+					"width": 268,
+					"height": 17,
+					"dataSource": "Form:C1466.beforeTimeline",
+					"sizingX": "grow",
+					"entryFilter": "&\"a-z;A-Z;0-9;ä;ö;ü;ß;Ä;Ö;Ü; ;,;-;_;+;*;#;$;€;/;(;);[;];=;?;+;!;§;.;:;{;};';\""
+				},
+				"Text1": {
+					"type": "text",
+					"text": "Before timeline",
+					"top": 134,
+					"left": 405,
+					"width": 102,
+					"height": 17,
+					"fontWeight": "normal"
+				},
+				"Eingabe3": {
+					"type": "input",
+					"left": 512,
+					"top": 164,
+					"width": 268,
+					"height": 17,
+					"dataSource": "Form:C1466.afterTimeline",
+					"sizingX": "grow",
+					"entryFilter": "&\"a-z;A-Z;0-9;ä;ö;ü;ß;Ä;Ö;Ü; ;,;-;_;+;*;#;$;€;/;(;);[;];=;?;+;!;§;.;:;{;};';\""
+				},
+				"Text3": {
+					"type": "text",
+					"text": "After timeline",
+					"top": 164,
+					"left": 405,
+					"width": 102,
+					"height": 17,
+					"fontWeight": "normal"
+				},
+				"Eingabe4": {
+					"type": "input",
+					"left": 651,
+					"top": 56,
+					"width": 128,
+					"height": 17,
+					"dataSource": "Form:C1466.rowsToCreate",
+					"dataSourceTypeHint": "number",
+					"stroke": "#9437FF",
+					"borderStyle": "dotted",
+					"fill": "transparent",
+					"min": 1,
+					"max": 1000000,
+					"numberFormat": "###,###,##0"
+				},
+				"Text4": {
+					"type": "text",
+					"text": "How many rows should be generated",
+					"top": 56,
+					"left": 405,
+					"width": 238,
+					"height": 17,
+					"fontWeight": "normal",
+					"stroke": "#9437FF"
+				},
+				"Eingabe5": {
+					"type": "input",
+					"left": 751,
+					"top": 229,
+					"width": 128,
+					"height": 12,
+					"dataSource": "\"rows in listbox \"+String:C10(Form:C1466.myListbox.length;\"###,###,##0\")",
+					"dataSourceTypeHint": "text",
+					"stroke": "#9437FF",
+					"borderStyle": "none",
+					"fill": "transparent",
+					"min": "",
+					"max": "",
+					"enterable": false,
+					"focusable": false,
+					"contextMenu": "none",
+					"textAlign": "right",
+					"sizingX": "move",
+					"fontSize": 10
+				},
+				"Eingabe6": {
+					"type": "input",
+					"left": 512,
+					"top": 191,
+					"width": 358,
+					"height": 12,
+					"dataSource": "yGetTimeline ",
+					"dataSourceTypeHint": "text",
+					"stroke": "#A9A9A9",
+					"borderStyle": "none",
+					"fill": "transparent",
+					"min": "",
+					"max": "",
+					"enterable": false,
+					"focusable": false,
+					"contextMenu": "none",
+					"textAlign": "left",
+					"sizingX": "grow",
+					"fontSize": 10,
+					"right": 870
 				}
 			},
 			"entryOrder": [
@@ -303,7 +586,14 @@
 				"oBtnColToMD",
 				"oBtnColToTXT",
 				"List Box",
-				"oBtnGenData"
+				"oBtnGenData",
+				"List Box1",
+				"Eingabe",
+				"Eingabe1",
+				"Eingabe3",
+				"Eingabe4",
+				"Eingabe5",
+				"Eingabe6"
 			]
 		}
 	],

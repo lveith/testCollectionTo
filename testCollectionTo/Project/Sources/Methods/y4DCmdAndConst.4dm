@@ -29,7 +29,7 @@ End if
 
 $resultCol:=New collection:C1472
 
-  // 4D-Commands
+  // ---- 4D-Commands -----
 If ($withCmdList)
 	ARRAY LONGINT:C221($arrCmdNo;0)
 	
@@ -143,8 +143,13 @@ If ($withCmdList)
 																																$attributes.cmdSyntax:=$lastCmdTxt
 																																$attributes.cmdDesc:=$cmdTxt
 																																If (($commandName#"") & ($commandName#"_4D"))
-																																	$txtAttr:=JSON Stringify:C1217($attributes;*)
-																																	$resultCol.push(New object:C1471("column1";$resultCol.length+1;"column2";$commandName;"column3";$id;"column4";"command";"column5";$theme;"column6";$contents;"column7";$txtAttr))
+																																	  // $txtAttr:=JSON Stringify($attributes;*)
+																																	If ($attributes.threadsafe=Null:C1517)
+																																		$txtAttr:="?"
+																																	Else 
+																																		$txtAttr:=String:C10(Bool:C1537($attributes.threadsafe ?? 0))
+																																	End if 
+																																	$resultCol.push(New object:C1471("column1";$resultCol.length+1;"column2";$commandName;"column3";$id;"column4";"command";"column5";$theme;"column6";$contents;"column7";$txtAttr;"column8";$attributes.cmdSyntax;"column9";$attributes.cmdDesc))
 																																	APPEND TO ARRAY:C911($arrCmdNo;Num:C11($cmdNo))
 																																End if 
 																															End if 
@@ -187,10 +192,13 @@ If ($withCmdList)
 					  // End if 
 					$id:="C"+String:C10($commandNum)
 					$contents:=$commandName+":C"+String:C10($commandNum)
-					$attributes:=New object:C1471("threadsafe";$threadsafe)
 					If (($commandName#"") & ($commandName#"_4D"))
-						$txtAttr:=JSON Stringify:C1217($attributes;*)
-						$resultCol.push(New object:C1471("column1";$resultCol.length+1;"column2";$commandName;"column3";$id;"column4";"command";"column5";$theme;"column6";$contents;"column7";$txtAttr))
+						  // $attributes:=New object("threadsafe";$threadsafe)
+						  // $txtAttr:=JSON Stringify($attributes;*)
+						  // $attributes.threadsafe:=$threadsafe
+						  // $attributes.cmdSyntax:=$lastCmdTxt
+						  // $attributes.cmdDesc:=$cmdTxt
+						$resultCol.push(New object:C1471("column1";$resultCol.length+1;"column2";$commandName;"column3";$id;"column4";"command";"column5";$theme;"column6";$contents;"column7";String:C10(Bool:C1537($threadsafe ?? 0));"column8";"";"column9";""))
 					End if 
 				End if 
 			End if 
@@ -198,7 +206,7 @@ If ($withCmdList)
 	Until (OK=0)  //end of existing commands
 End if 
 
-  // Konstanten
+  // ---- 4D-Constants -----
 If ($withConstList)
 	$constantThemeNum:=0
 	$constantNum:=0

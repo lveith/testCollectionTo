@@ -24,19 +24,7 @@ If ($calledBy#Current method name:C684)  // isSelfLauched
 Else 
 	$winRef:=Open form window:C675("testCollectionTo")
 	
-	C_LONGINT:C283($buildNr4D)
-	C_TEXT:C284($info4D;$major4D;$minor4D;$release4D;$version4D)
-	$version4D:=Application version:C493($buildNr4D)
-	$major4D:=$version4D[[1]]+$version4D[[2]]  //version number, e.g. 14
-	$release4D:=$version4D[[3]]  //Rx
-	$minor4D:=$version4D[[4]]  //.x
-	$info4D:="4Dv"+$major4D
-	If ($release4D="0")  //4D v14.x
-		$info4D:=$info4D+Choose:C955($minor4D#"0";"."+$minor4D;"")
-	Else   //4D v14 Rx
-		$info4D:=$info4D+"R"+$release4D
-	End if 
-	$info4D:=$info4D+"b"+String:C10($buildNr4D)
+	$info4D:=yGet4DVersionShortname 
 	If (Version type:C495 ?? 64 bit version:K5:25)
 		$info4D:=$info4D+"(64bit)"
 	Else 
