@@ -11,20 +11,7 @@ Case of
 		Form:C1466.beforeTimeline:=""
 		Form:C1466.afterTimeline:=""
 		
-		Form:C1466.colKeys:=New collection:C1472
-		
-		C_COLLECTION:C1488($colKeys)
-		C_TEXT:C284($colKeysItem)
-		$colKeys:=New collection:C1472
-		If (Form:C1466.myListbox.length>0)
-			If (Value type:C1509(Form:C1466.myListbox[0])=Is object:K8:27)
-				$colKeys:=OB Keys:C1719(Form:C1466.myListbox[0])
-				For each ($colKeysItem;$colKeys)
-					Form:C1466.colKeys.push(New object:C1471("active";True:C214;"key";$colKeysItem;"sort";Form:C1466.colKeys.length+1;"title";OBJECT Get title:C1068(*;"oColumnHead"+$colKeysItem[[Length:C16($colKeysItem)]])))
-				End for each 
-			End if 
-		End if 
-		
+		Form:C1466.colKeys:=yColToAttrCreate (Form:C1466.myListbox)
 		
 	: (Form event code:C388=On Data Change:K2:15)
 		

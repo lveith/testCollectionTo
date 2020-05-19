@@ -1,5 +1,9 @@
 //%attributes = {}
-  // PM: "yColKeysCollectionTo"
+  // PM: "yColKeysCollectionTo" (new LV 19.05.20, 11:34:45)
+  // $0 - C_COLLECTION - resultCol (sorted, reduced and extracted attributesCollection KEY or TITLE)
+  // $1 - C_COLLECTION - attributesCollection
+  // $2 - C_BOOLEAN - isGetTitles
+  // Last change: LV 19.05.20, 11:34:45
 
 C_COLLECTION:C1488($resultCol;$0)
 C_COLLECTION:C1488($1)  // [{"active", True, "sort", 1, "title", "No.", "key", "column1"}, {"active", False, "sort", 2, "title", "---", "key", "column2"}]

@@ -1,6 +1,10 @@
 //%attributes = {}
-  // PM: "y4DCmdAndConst"
+  // PM: "y4DCmdAndConst" (new LV 19.05.20, 11:33:22)
+  // $0 - C_COLLECTION - ResultCol
+  // $1 - C_BOOLEAN - withCmdList
+  // $2 - C_BOOLEAN - withConstList
   // Returns a collection of 4D commands and constants
+  // Last change: LV 19.05.20, 11:33:22
 
 C_COLLECTION:C1488($resultCol;$0)
 C_BOOLEAN:C305($withCmdList;$1)  // optional

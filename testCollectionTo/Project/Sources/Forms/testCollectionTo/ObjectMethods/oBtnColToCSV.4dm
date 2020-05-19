@@ -1,4 +1,6 @@
-  // OM: "testCollectionTo".oBtnColToCSV
+  // OM: "testCollectionTo".oBtnColToCSV (new LV 19.05.20, 11:12:00)
+  // Last change: LV 19.05.20, 11:12:00
+
 
 Case of 
 	: (Form event code:C388=On Clicked:K2:4)

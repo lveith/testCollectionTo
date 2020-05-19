@@ -1,7 +1,8 @@
 //%attributes = {}
-  // PM: "startTestForm"
+  // PM: "startTestForm" (new LV 19.05.20, 11:32:34)
   // $1 - C_TEXT - calledBy methodName (only for internal use)
   // StartMethode using (selfLauched new Process)
+  // Last change: LV 19.05.20, 11:32:34
 
 C_TEXT:C284($calledBy;$1)
 C_LONGINT:C283($winRef)
