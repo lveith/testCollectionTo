@@ -19,5 +19,6 @@ $col.map("colMapJoin";$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparat
 - Collection to CSV
 - Collection to MD
 - Collection to TXT
+- Collection to TSV
 
-![github-small](https://user-images.githubusercontent.com/65073460/82241289-2b31e880-993c-11ea-88c7-1d04a1fa10f8.png)
+![github-small](https://user-images.githubusercontent.com/65073460/82457013-39efdb00-9ab5-11ea-8e59-b179a933102b.png)
