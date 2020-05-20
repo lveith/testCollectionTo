@@ -5,7 +5,7 @@
 	},
 	"windowSizingX": "variable",
 	"windowSizingY": "variable",
-	"windowMinWidth": 871,
+	"windowMinWidth": 971,
 	"windowMinHeight": 0,
 	"windowMaxWidth": 32767,
 	"windowMaxHeight": 32767,
@@ -38,7 +38,7 @@
 					"type": "button",
 					"text": "#",
 					"top": 1,
-					"left": 821,
+					"left": 901,
 					"width": 27,
 					"height": 24,
 					"events": [
@@ -55,7 +55,7 @@
 					"type": "button",
 					"text": "✗",
 					"top": 1,
-					"left": 854,
+					"left": 934,
 					"width": 27,
 					"height": 24,
 					"events": [
@@ -82,7 +82,7 @@
 					"text": "collection to HTML",
 					"top": 6,
 					"left": 9,
-					"width": 149,
+					"width": 139,
 					"height": 37,
 					"events": [
 						"onClick"
@@ -93,7 +93,7 @@
 					"type": "listbox",
 					"left": 10,
 					"top": 244,
-					"width": 871,
+					"width": 951,
 					"height": 386,
 					"events": [
 						"onClick",
@@ -277,8 +277,8 @@
 					"type": "button",
 					"text": "collection to CSV",
 					"top": 6,
-					"left": 169,
-					"width": 149,
+					"left": 159,
+					"width": 139,
 					"height": 37,
 					"events": [
 						"onClick"
@@ -291,8 +291,8 @@
 					"type": "button",
 					"text": "collection to MD",
 					"top": 6,
-					"left": 329,
-					"width": 149,
+					"left": 309,
+					"width": 139,
 					"height": 37,
 					"events": [
 						"onClick"
@@ -305,8 +305,8 @@
 					"type": "button",
 					"text": "collection to TXT",
 					"top": 6,
-					"left": 489,
-					"width": 149,
+					"left": 459,
+					"width": 139,
 					"height": 37,
 					"events": [
 						"onClick"
@@ -314,21 +314,6 @@
 					"method": "ObjectMethods/oBtnColToTXT.4dm",
 					"class": "",
 					"stroke": "automatic"
-				},
-				"oBtnGenData": {
-					"type": "button",
-					"text": "Generate data",
-					"top": 6,
-					"left": 649,
-					"width": 132,
-					"height": 37,
-					"events": [
-						"onClick"
-					],
-					"method": "ObjectMethods/oBtnGenData.4dm",
-					"class": "",
-					"stroke": "#9437FF",
-					"fontStyle": "italic"
 				},
 				"List Box1": {
 					"type": "listbox",
@@ -460,11 +445,12 @@
 					"type": "input",
 					"left": 512,
 					"top": 104,
-					"width": 268,
+					"width": 367,
 					"height": 17,
 					"dataSource": "Form:C1466.listname",
 					"sizingX": "grow",
-					"entryFilter": "&\"a-z;A-Z;0-9;ä;ö;ü;ß;Ä;Ö;Ü; ;,;-;_;+;*;#;$;€;/;(;);[;];=;?;+;!;§;';\""
+					"entryFilter": "&\"a-z;A-Z;0-9;ä;ö;ü;ß;Ä;Ö;Ü; ;,;-;_;+;*;#;$;€;/;(;);[;];=;?;+;!;§;';\"",
+					"right": 879
 				},
 				"Text": {
 					"type": "text",
@@ -479,11 +465,12 @@
 					"type": "input",
 					"left": 512,
 					"top": 134,
-					"width": 268,
+					"width": 367,
 					"height": 17,
 					"dataSource": "Form:C1466.beforeTimeline",
 					"sizingX": "grow",
-					"entryFilter": "&\"a-z;A-Z;0-9;ä;ö;ü;ß;Ä;Ö;Ü; ;,;-;_;+;*;#;$;€;/;(;);[;];=;?;+;!;§;.;:;{;};';\""
+					"entryFilter": "&\"a-z;A-Z;0-9;ä;ö;ü;ß;Ä;Ö;Ü; ;,;-;_;+;*;#;$;€;/;(;);[;];=;?;+;!;§;.;:;{;};';\"",
+					"right": 879
 				},
 				"Text1": {
 					"type": "text",
@@ -498,11 +485,12 @@
 					"type": "input",
 					"left": 512,
 					"top": 164,
-					"width": 268,
+					"width": 367,
 					"height": 17,
 					"dataSource": "Form:C1466.afterTimeline",
 					"sizingX": "grow",
-					"entryFilter": "&\"a-z;A-Z;0-9;ä;ö;ü;ß;Ä;Ö;Ü; ;,;-;_;+;*;#;$;€;/;(;);[;];=;?;+;!;§;.;:;{;};';\""
+					"entryFilter": "&\"a-z;A-Z;0-9;ä;ö;ü;ß;Ä;Ö;Ü; ;,;-;_;+;*;#;$;€;/;(;);[;];=;?;+;!;§;.;:;{;};';\"",
+					"right": 879
 				},
 				"Text3": {
 					"type": "text",
@@ -515,9 +503,9 @@
 				},
 				"Eingabe4": {
 					"type": "input",
-					"left": 651,
+					"left": 771,
 					"top": 56,
-					"width": 128,
+					"width": 108,
 					"height": 17,
 					"dataSource": "Form:C1466.rowsToCreate",
 					"dataSourceTypeHint": "number",
@@ -530,17 +518,17 @@
 				},
 				"Text4": {
 					"type": "text",
-					"text": "How many rows should be generated",
+					"text": "How many rows should be generated next time?",
 					"top": 56,
-					"left": 405,
-					"width": 238,
+					"left": 471,
+					"width": 295,
 					"height": 17,
 					"fontWeight": "normal",
 					"stroke": "#9437FF"
 				},
 				"Eingabe5": {
 					"type": "input",
-					"left": 751,
+					"left": 831,
 					"top": 229,
 					"width": 128,
 					"height": 12,
@@ -562,7 +550,7 @@
 					"type": "input",
 					"left": 512,
 					"top": 191,
-					"width": 358,
+					"width": 438,
 					"height": 12,
 					"dataSource": "yGetTimeline ",
 					"dataSourceTypeHint": "text",
@@ -577,7 +565,36 @@
 					"textAlign": "left",
 					"sizingX": "grow",
 					"fontSize": 10,
-					"right": 870
+					"right": 950
+				},
+				"oBtnColToTSV": {
+					"type": "button",
+					"text": "collection to TSV",
+					"top": 6,
+					"left": 609,
+					"width": 139,
+					"height": 37,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/oBtnColToTSV.4dm",
+					"class": "",
+					"stroke": "automatic"
+				},
+				"oBtnGenData": {
+					"type": "button",
+					"text": "Generate data",
+					"top": 6,
+					"left": 769,
+					"width": 112,
+					"height": 37,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/oBtnGenData.4dm",
+					"class": "",
+					"stroke": "#9437FF",
+					"fontStyle": "italic"
 				}
 			},
 			"entryOrder": [
@@ -593,7 +610,8 @@
 				"Eingabe3",
 				"Eingabe4",
 				"Eingabe5",
-				"Eingabe6"
+				"Eingabe6",
+				"oBtnColToTSV"
 			]
 		}
 	],

@@ -3,7 +3,8 @@
   // $1 - C_COLLECTION - Collection to dump out as HTML-Table
   // $2 - C_TEXT - Name of the list for titles and filename (when empty than auto created)
   // $3 - C_TEXT - Timelinetext (when empty than auto created)
-  // $4 - C_COLLECTION - Optional attributesCollection with options for building list (if omitted than auto created), see PM: "yColToAttrCreate"
+  // $4 - C_COLLECTION - attributesCollection (optional) with options for building list (if omitted than auto created), see PM: "yColToAttrCreate"
+  // $5 - C_BOOLEAN - isAltCall (optional)
   // Dumps out a collection as HTML-Table
   // Can used with collectionOfObjects(multicolumn keynamed) or with oneColumn(without keyname) plain collection too.
   // By default all key-names used automatically as column-titles
@@ -52,28 +53,33 @@
   //   }
   // ]
   // --------------------
-  // Last change: LV 19.05.20, 10:07:41
+  // Last change: LV 20.05.20, 14:56:11
 
+C_TEXT:C284($srcTxt;$0)
 C_COLLECTION:C1488($col;$1)
 C_TEXT:C284($nameInfo;$2)
 C_TEXT:C284($timeInfo;$3)
 C_COLLECTION:C1488($colToAttr;$4)
+C_BOOLEAN:C305($isAltCall;$5)
 
 C_LONGINT:C283($i)
 C_TIME:C306($docRef)
-C_TEXT:C284($srcTxt)
 C_TEXT:C284($srcTxtStart;$srcTxtEnd)
 C_COLLECTION:C1488($colHeadRow;$colBodyRow;$colKeys;$colKeysHead)
 C_TEXT:C284($headRowTxt;$bodyRowsTxt;$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparator;$rowSeparator)
+
+If (Count parameters:C259>4)
+	$isAltCall:=$5
+Else 
+	$isAltCall:=False:C215
+End if 
 
 If (Count parameters:C259>0)
 	$col:=$1.copy()
 Else   // ok, than use any test data
 	$col:=New collection:C1472
 	If (True:C214)
-		For ($i;1;1000)
-			$col.push(New object:C1471("column1";$col.length+1;"column2";String:C10(Random:C100);"column3";String:C10(Random:C100);"column4";String:C10(Random:C100);"column5";String:C10(Random:C100)))
-		End for 
+		$col:=yNewRandomCollection (100)
 	Else 
 		For ($i;1;1000)
 			$col.push($i)
@@ -90,7 +96,9 @@ End if
 If (Count parameters:C259>2)  // $3 or automatic standard timeInfo
 	$timeInfo:=$3
 End if 
-$timeInfo:=yGetTimeline ($timeInfo)
+If (Not:C34($isAltCall))
+	$timeInfo:=yGetTimeline ($timeInfo)
+End if 
 
 Case of 
 	: (Count parameters:C259>3)
@@ -179,14 +187,18 @@ $bodyRowsTxt:=$colBodyRow.join($rowSeparator)
 
 $srcTxt:=$srcTxtStart+$headRowTxt+$bodyRowsTxt+$srcTxtEnd
 
-ON ERR CALL:C155("onErrDocument")
-$docRef:=Create document:C266($nameInfo+".html")
-If (OK=1)  // If document has been created successfully
-	CLOSE DOCUMENT:C267($docRef)
-	TEXT TO DOCUMENT:C1237(Document;$srcTxt)
-	OPEN URL:C673(Document)
-Else 
-	ALERT:C41("Error: Any problem by Create document!")
+If (Not:C34($isAltCall))
+	ON ERR CALL:C155("onErrDocument")
+	$docRef:=Create document:C266($nameInfo+".html")
+	If (OK=1)  // If document has been created successfully
+		CLOSE DOCUMENT:C267($docRef)
+		TEXT TO DOCUMENT:C1237(Document;$srcTxt)
+		OPEN URL:C673(Document)
+	Else 
+		ALERT:C41("Error: Any problem by Create document!")
+	End if 
 End if 
+
+$0:=$srcTxt
 
   // - EOF -

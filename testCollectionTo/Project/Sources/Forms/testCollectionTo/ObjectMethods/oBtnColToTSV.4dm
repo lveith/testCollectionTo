@@ -1,9 +1,9 @@
-  // PM: "testCollectionTo.oBtnColToMD" (new LV 20.05.20, 15:44:29)
-  // Last change: LV 20.05.20, 15:44:29
+  // PM: "testCollectionTo.oBtnColToTSV" (new LV 20.05.20, 15:42:42)
+  // Last change: LV 20.05.20, 15:42:42
 
 Case of 
 	: (Form event code:C388=On Clicked:K2:4)
-		If (True:C214)
+		If (False:C215)
 			
 			C_COLLECTION:C1488($colToAttr)
 			C_OBJECT:C1216($itemColumn)
@@ -23,10 +23,10 @@ Case of
 				End for each 
 			End if 
 			
-			collectionTo (Form:C1466.myListbox;".md";Form:C1466.listname;"";Form:C1466.beforeTimeline;Form:C1466.afterTimeline;$colToAttr)
+			collectionTo (Form:C1466.myListbox;".tsv";Form:C1466.listname;"";Form:C1466.beforeTimeline;Form:C1466.afterTimeline;$colToAttr)
 			
 		Else 
-			collectionToMd (Form:C1466.myListbox;Form:C1466.listname)
+			collectionToTsv (Form:C1466.myListbox;Form:C1466.listname)
 			
 		End if 
 		

@@ -1,11 +1,11 @@
 //%attributes = {}
-  // PM: "collectionToMd" (new LV 19.05.20, 10:07:41)
-  // $1 - C_COLLECTION - Collection to dump out as MD (markdown) table
+  // PM: "collectionToCSV" (new LV 19.05.20, 11:12:50)
+  // $1 - C_COLLECTION - Collection to dump out as CSV
   // $2 - C_TEXT - Name of the list for titles and filename (when empty than auto created)
   // $3 - C_TEXT - Timelinetext (when empty than auto created)
   // $4 - C_COLLECTION - Optional attributesCollection with options for building list (if omitted than auto created), see PM: "yColToAttrCreate"
   // $5 - C_BOOLEAN - isAltCall (optional)
-  // Dumps out a collection as MD Table
+  // Dumps out a collection as CSV (comma separated values)
   // Can used with collectionOfObjects(multicolumn keynamed) or with oneColumn(without keyname) plain collection too.
   // By default all key-names used automatically as column-titles
   // and by default all keys/columns dumped out in physically order.
@@ -53,7 +53,7 @@
   //   }
   // ]
   // --------------------
-  // Last change: LV 19.05.20, 11:25:12
+  // Last change: LV 20.05.20, 15:06:18
 
 C_COLLECTION:C1488($col;$1)
 C_TEXT:C284($nameInfo;$2)
@@ -97,6 +97,8 @@ End if
 
 If (Count parameters:C259>2)  // $3 or automatic standard timeInfo
 	$timeInfo:=$3
+Else 
+	$timeInfo:=String:C10(Current date:C33;System date long:K1:3)+" "+Lowercase:C14(String:C10(Current time:C178;HH MM AM PM:K7:5))
 End if 
 If (Not:C34($isAltCall))
 	$timeInfo:=yGetTimeline ($timeInfo)
@@ -113,11 +115,19 @@ Case of
 		$colToAttr:=Form:C1466.colKeys
 End case 
 
+C_TEXT:C284($lineBreak)
+If (Is macOS:C1572)
+	$lineBreak:=Char:C90(Line feed:K15:40)
+Else 
+	$lineBreak:=Char:C90(Carriage return:K15:38)+Char:C90(Line feed:K15:40)
+End if 
+
 $srcTxtStart:=""
-$srcTxtStart:=$srcTxtStart+Char:C90(Line feed:K15:40)
-$srcTxtStart:=$srcTxtStart+"# "+$nameInfo+Char:C90(Line feed:K15:40)
-$srcTxtStart:=$srcTxtStart+"*"+$timeInfo+"*"+Char:C90(Line feed:K15:40)
-$srcTxtStart:=$srcTxtStart+Char:C90(Line feed:K15:40)
+If (False:C215)  // ...set it to true if a title is wished...
+	$srcTxtStart:=$srcTxtStart+$nameInfo+$lineBreak
+	$srcTxtStart:=$srcTxtStart+$timeInfo+$lineBreak
+	$srcTxtStart:=$srcTxtStart+$lineBreak
+End if 
 
 $srcTxtEnd:=""
 
@@ -125,44 +135,32 @@ $txtResult:=""
 
 C_COLLECTION:C1488($colReplace)
 $colReplace:=New collection:C1472
-$colReplace.push(New object:C1471("from";"&";"to";"&amp;"))  // "&" must be first one in collection !!!
-$colReplace.push(New object:C1471("from";"<";"to";"&lt;"))
-$colReplace.push(New object:C1471("from";">";"to";"&gt;"))
-$colReplace.push(New object:C1471("from";"\"";"to";"&quot;"))
-$colReplace.push(New object:C1471("from";" ";"to";"&nbsp;"))
-$colReplace.push(New object:C1471("from";"\t";"to";"&nbsp;"))
-$colReplace.push(New object:C1471("from";"#";"to";"&num;"))
-$colReplace.push(New object:C1471("from";"*";"to";"&#42;"))
-$colReplace.push(New object:C1471("from";"|";"to";"&#124;"))
-$colReplace.push(New object:C1471("from";"`";"to";"&grave;"))
-$colReplace.push(New object:C1471("from";"-";"to";"&#45;"))
-$colReplace.push(New object:C1471("from";"!";"to";"&#33;"))
-$colReplace.push(New object:C1471("from";"[";"to";"&#91;"))
-$colReplace.push(New object:C1471("from";"]";"to";"&#93;"))
-$colReplace.push(New object:C1471("from";"\r\n";"to";"<br>"))
-$colReplace.push(New object:C1471("from";"\r";"to";"<br>"))
-$colReplace.push(New object:C1471("from";"\n";"to";"<br>"))
+$colReplace.push(New object:C1471("from";"\"";"to";"\"\""))
+  // $colReplace.push(New object("from";"\t";"to";" "))
+  // $colReplace.push(New object("from";"\r\n";"to";" "))
+  // $colReplace.push(New object("from";"\r";"to";" "))
+  // $colReplace.push(New object("from";"\n";"to";" "))
 
 $headRowTxt:=""
 $colKeysHead:=yColKeysCollectionTo ($colToAttr;True:C214)  // Get active items titles
 If ($colKeysHead.length>0)
 	$rowPrefix:=""
-	$rowSuffix:="|"
-	$cellPrefix:="| "
-	$cellSuffix:=" "
-	$cellSeparator:=""
-	$rowSeparator:=Char:C90(Line feed:K15:40)
-	$headRowTxt:=$rowPrefix+$cellPrefix+$colKeysHead.join($cellSuffix+$cellSeparator+$cellPrefix)+$cellSuffix+$rowSuffix+$rowSeparator+("| :---: "*$colKeysHead.length)+"|"+$rowSeparator
+	$rowSuffix:=""
+	$cellPrefix:="\""
+	$cellSuffix:="\""
+	$cellSeparator:=";"
+	$rowSeparator:=$lineBreak
+	$headRowTxt:=$rowPrefix+$cellPrefix+$colKeysHead.join($cellSuffix+$cellSeparator+$cellPrefix)+$cellSuffix+$rowSuffix+$rowSeparator
 End if 
 
 $bodyRowsTxt:=""
 $colKeys:=yColKeysCollectionTo ($colToAttr;False:C215)  // Get active items keys
 $rowPrefix:=""
-$rowSuffix:="|"
-$cellPrefix:="| "
-$cellSuffix:=" "
-$cellSeparator:=""
-$rowSeparator:=Char:C90(Line feed:K15:40)
+$rowSuffix:=""
+$cellPrefix:="\""
+$cellSuffix:="\""
+$cellSeparator:=";"
+$rowSeparator:=$lineBreak
 If ($colKeys.length>0)
 	$colBodyRow:=$col.map("colMapJoin";$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparator;$colReplace;$colKeys)
 Else 
@@ -174,7 +172,7 @@ $srcTxt:=$srcTxtStart+$headRowTxt+$bodyRowsTxt+$srcTxtEnd
 
 If (Not:C34($isAltCall))
 	ON ERR CALL:C155("onErrDocument")
-	$docRef:=Create document:C266($nameInfo+".md")
+	$docRef:=Create document:C266($nameInfo+".csv")
 	If (OK=1)  // If document has been created successfully
 		CLOSE DOCUMENT:C267($docRef)
 		TEXT TO DOCUMENT:C1237(Document;$srcTxt;"UTF-8";Document with LF:K24:22)
