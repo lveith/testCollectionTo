@@ -117,9 +117,9 @@ End case
 
 $txtResult:=""
 
-C_COLLECTION:C1488($colReplace)
-$colReplace:=New collection:C1472
-$colReplace.push(New object:C1471("from";"\"";"to";"\"\""))
+  // C_COLLECTION($colReplace)
+  // $colReplace:=New collection
+  // $colReplace.push(New object("from";"\"";"to";"\"\""))
   // $colReplace.push(New object("from";"\t";"to";" "))
   // $colReplace.push(New object("from";"\r\n";"to";" "))
   // $colReplace.push(New object("from";"\r";"to";" "))
