@@ -84,6 +84,12 @@ Case of
   : (True)  // alternativ ".tsv"
     collectionTo ($myCollectionToDumpOut;".tsv";$myListName;$myTimelineMiddle;$myTimelineBefore;$myTimelineAfter;$colToAttr)
     
+  : (True)  // alternativ ".xml"
+    collectionTo ($myCollectionToDumpOut;".xml";$myListName;$myTimelineMiddle;$myTimelineBefore;$myTimelineAfter;$colToAttr)
+    
+  : (True)  // alternativ ".json"
+    collectionTo ($myCollectionToDumpOut;".json";$myListName;$myTimelineMiddle;$myTimelineBefore;$myTimelineAfter;$colToAttr)
+    
 End case
 ```
 
