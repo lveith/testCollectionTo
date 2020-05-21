@@ -188,15 +188,7 @@ $bodyRowsTxt:=$colBodyRow.join($rowSeparator)
 $srcTxt:=$srcTxtStart+$headRowTxt+$bodyRowsTxt+$srcTxtEnd
 
 If (Not:C34($isAltCall))
-	ON ERR CALL:C155("onErrDocument")
-	$docRef:=Create document:C266($nameInfo+".html")
-	If (OK=1)  // If document has been created successfully
-		CLOSE DOCUMENT:C267($docRef)
-		TEXT TO DOCUMENT:C1237(Document;$srcTxt)
-		OPEN URL:C673(Document)
-	Else 
-		ALERT:C41("Error: Any problem by Create document!")
-	End if 
+	yCreateOpenTxtDoc ($srcTxt;$nameInfo;".html")
 End if 
 
 $0:=$srcTxt

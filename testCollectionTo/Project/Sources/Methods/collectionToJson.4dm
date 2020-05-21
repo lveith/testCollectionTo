@@ -1,11 +1,11 @@
 //%attributes = {}
-  // PM: "collectionToMd" (new LV 19.05.20, 10:07:41)
-  // $1 - C_COLLECTION - Collection to dump out as MD (markdown) table
+  // PM: "collectionToJson" (new LV 21.05.20, 09:03:40)
+  // $1 - C_COLLECTION - Collection to dump out as JSON
   // $2 - C_TEXT - Name of the list for titles and filename (when empty than auto created)
   // $3 - C_TEXT - Timelinetext (when empty than auto created)
   // $4 - C_COLLECTION - Optional attributesCollection with options for building list (if omitted than auto created), see PM: "yColToAttrCreate"
   // $5 - C_BOOLEAN - isAltCall (optional)
-  // Dumps out a collection as MD Table
+  // Dumps out a collection as JSON
   // Can used with collectionOfObjects(multicolumn keynamed) or with oneColumn(without keyname) plain collection too.
   // By default all key-names used automatically as column-titles
   // and by default all keys/columns dumped out in physically order.
@@ -53,7 +53,7 @@
   //   }
   // ]
   // --------------------
-  // Last change: LV 19.05.20, 11:25:12
+  // Last change: LV 21.05.20, 09:03:51
 
 C_COLLECTION:C1488($col;$1)
 C_TEXT:C284($nameInfo;$2)
@@ -97,6 +97,8 @@ End if
 
 If (Count parameters:C259>2)  // $3 or automatic standard timeInfo
 	$timeInfo:=$3
+Else 
+	$timeInfo:=String:C10(Current date:C33;System date long:K1:3)+" "+Lowercase:C14(String:C10(Current time:C178;HH MM AM PM:K7:5))
 End if 
 If (Not:C34($isAltCall))
 	$timeInfo:=yGetTimeline ($timeInfo)
@@ -113,67 +115,24 @@ Case of
 		$colToAttr:=Form:C1466.colKeys
 End case 
 
-$srcTxtStart:=""
-$srcTxtStart:=$srcTxtStart+Char:C90(Line feed:K15:40)
-$srcTxtStart:=$srcTxtStart+"# "+$nameInfo+Char:C90(Line feed:K15:40)
-$srcTxtStart:=$srcTxtStart+"*"+$timeInfo+"*"+Char:C90(Line feed:K15:40)
-$srcTxtStart:=$srcTxtStart+Char:C90(Line feed:K15:40)
-
-$srcTxtEnd:=""
-
 $txtResult:=""
 
 C_COLLECTION:C1488($colReplace)
 $colReplace:=New collection:C1472
-$colReplace.push(New object:C1471("from";"&";"to";"&amp;"))  // "&" must be first one in collection !!!
-$colReplace.push(New object:C1471("from";"<";"to";"&lt;"))
-$colReplace.push(New object:C1471("from";">";"to";"&gt;"))
-$colReplace.push(New object:C1471("from";"\"";"to";"&quot;"))
-$colReplace.push(New object:C1471("from";" ";"to";"&nbsp;"))
-$colReplace.push(New object:C1471("from";"\t";"to";"&nbsp;"))
-$colReplace.push(New object:C1471("from";"#";"to";"&num;"))
-$colReplace.push(New object:C1471("from";"*";"to";"&#42;"))
-$colReplace.push(New object:C1471("from";"|";"to";"&#124;"))
-$colReplace.push(New object:C1471("from";"`";"to";"&grave;"))
-$colReplace.push(New object:C1471("from";"-";"to";"&#45;"))
-$colReplace.push(New object:C1471("from";"!";"to";"&#33;"))
-$colReplace.push(New object:C1471("from";"[";"to";"&#91;"))
-$colReplace.push(New object:C1471("from";"]";"to";"&#93;"))
-$colReplace.push(New object:C1471("from";"\r\n";"to";"<br>"))
-$colReplace.push(New object:C1471("from";"\r";"to";"<br>"))
-$colReplace.push(New object:C1471("from";"\n";"to";"<br>"))
+$colReplace.push(New object:C1471("from";"\"";"to";"\"\""))
+  // $colReplace.push(New object("from";"\t";"to";" "))
+  // $colReplace.push(New object("from";"\r\n";"to";" "))
+  // $colReplace.push(New object("from";"\r";"to";" "))
+  // $colReplace.push(New object("from";"\n";"to";" "))
 
-$headRowTxt:=""
-$colKeysHead:=yColKeysCollectionTo ($colToAttr;True:C214)  // Get active items titles
-If ($colKeysHead.length>0)
-	$rowPrefix:=""
-	$rowSuffix:="|"
-	$cellPrefix:="| "
-	$cellSuffix:=" "
-	$cellSeparator:=""
-	$rowSeparator:=Char:C90(Line feed:K15:40)
-	$headRowTxt:=$rowPrefix+$cellPrefix+$colKeysHead.join($cellSuffix+$cellSeparator+$cellPrefix)+$cellSuffix+$rowSuffix+$rowSeparator+("| :---: "*$colKeysHead.length)+"|"+$rowSeparator
-End if 
-
-$bodyRowsTxt:=""
-$colKeys:=yColKeysCollectionTo ($colToAttr;False:C215)  // Get active items keys
-$rowPrefix:=""
-$rowSuffix:="|"
-$cellPrefix:="| "
-$cellSuffix:=" "
-$cellSeparator:=""
-$rowSeparator:=Char:C90(Line feed:K15:40)
-If ($colKeys.length>0)
-	$colBodyRow:=$col.map("colMapJoin";$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparator;$colReplace;$colKeys)
-Else 
-	$colBodyRow:=$col.map("colMapJoin";$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparator;$colReplace)
-End if 
-$bodyRowsTxt:=$colBodyRow.join($rowSeparator)
-
-$srcTxt:=$srcTxtStart+$headRowTxt+$bodyRowsTxt+$srcTxtEnd
+C_COLLECTION:C1488($colReducedKeys;$colReducedKeysHead)
+$colReducedKeysHead:=yColKeysCollectionTo ($colToAttr;True:C214)  // Get active items titles
+$colReducedKeysHead:=yRgxReplaceInCol ($colReducedKeysHead;"[^a-zA-Z0-9_]";"_")
+$colReducedKeys:=yColKeysCollectionTo ($colToAttr;False:C215)  // Get active items keys
+$srcTxt:=JSON Stringify:C1217(yColExtract ($col;$colReducedKeys;$colReducedKeysHead);*)
 
 If (Not:C34($isAltCall))
-	yCreateOpenTxtDoc ($srcTxt;$nameInfo;".md")
+	yCreateOpenTxtDoc ($srcTxt;$nameInfo;".csv")
 End if 
 
 $0:=$srcTxt

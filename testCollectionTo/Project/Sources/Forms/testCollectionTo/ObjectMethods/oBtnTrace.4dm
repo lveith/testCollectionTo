@@ -15,6 +15,7 @@ Case of
 			TRACE:C157
 		End if 
 		
+		
 		Case of 
 			: (False:C215)  // step in here if you like
 				C_PICTURE:C286($pict)
@@ -93,6 +94,38 @@ Case of
 				$objInfo:=JSON Parse:C1218("{\"alpha\": 4552,\"beta\": [{\"echo\": 45,\"delta\": \"text1\"},{\"echo\": 52,\"golf\": \"text2\"}]}";Is object:K8:27;*)  //* to get the __symbols property
 				  //in the returned $obInfo object
 				$objSelf:=JSON Parse:C1218("{\"alpha\": 4552,\"beta\": [{\"echo\": 45,\"delta\": \"text1\"},{\"echo\": 52,\"golf\": \"text2\"}]}";Is object:K8:27)
+				
+			: (False:C215)
+				C_COLLECTION:C1488($col)
+				$col:=New collection:C1472(New object:C1471("a";1;"b";11);New object:C1471("a";2;"b";22)).extract("b")
+				$col:=New collection:C1472(New object:C1471("a";1;"b";11;"c";111);New object:C1471("a";2;"b";22;"c";222)).extract("b";"bx")
+				$col:=New collection:C1472(New object:C1471("a";1;"b";11;"c";111);New object:C1471("a";2;"b";22;"c";222)).extract("b";"bx";"c";"cx")
+				  // Error, must be TxtPars not a collection // $col:=New collection(New object("a";1;"b";11;"c";111);New object("a";2;"b";22;"c";222)).extract(New collection("b";"bx";"c";"cx"))
+				If (True:C214)
+					C_COLLECTION:C1488($colReducedKeys;$colReducedKeysHead)
+					$col:=New collection:C1472(New object:C1471("a";1;"b";11;"c";111);New object:C1471("a";2;"b";22;"c";222))
+					
+					C_TEXT:C284($formulaStr)
+					$colReducedKeys:=New collection:C1472("b";"c")
+					$colReducedKeysHead:=New collection:C1472("bx";"cx")
+					$formulaStr:="\""
+					For ($i;0;($colReducedKeys.length-1))
+						If ($i<($colReducedKeys.length-1))
+							$formulaStr:=$formulaStr+$colReducedKeys[$i]+"\";\""+$colReducedKeysHead[$i]+"\";\""
+						Else 
+							$formulaStr:=$formulaStr+$colReducedKeys[$i]+"\";\""+$colReducedKeysHead[$i]
+						End if 
+					End for 
+					$formulaStr:=$formulaStr+"\""
+					$objTmp:=New object:C1471("col";$col)
+					$formula:=Formula from string:C1601("This.col.extract("+$formulaStr+")")
+					$result:=$formula.call($objTmp)
+					
+				End if 
+				
+			: (False:C215)
+				C_COLLECTION:C1488($col)
+				$col:=yRgxReplaceInCol (New collection:C1472("a b c";"d ";" e");"[^a-zA-Z0-9_]";"_")
 				
 			: (False:C215)  // step in here if you like
 				  // ...insert your own debug examples

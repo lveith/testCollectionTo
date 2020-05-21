@@ -1,11 +1,11 @@
 //%attributes = {}
-  // PM: "collectionToMd" (new LV 19.05.20, 10:07:41)
-  // $1 - C_COLLECTION - Collection to dump out as MD (markdown) table
+  // PM: "collectionToXml" (new LV 20.05.20, 17:28:12)
+  // $1 - C_COLLECTION - Collection to dump out as XML
   // $2 - C_TEXT - Name of the list for titles and filename (when empty than auto created)
   // $3 - C_TEXT - Timelinetext (when empty than auto created)
-  // $4 - C_COLLECTION - Optional attributesCollection with options for building list (if omitted than auto created), see PM: "yColToAttrCreate"
+  // $4 - C_COLLECTION - attributesCollection (optional) with options for building list (if omitted than auto created), see PM: "yColToAttrCreate"
   // $5 - C_BOOLEAN - isAltCall (optional)
-  // Dumps out a collection as MD Table
+  // Dumps out a collection as XML
   // Can used with collectionOfObjects(multicolumn keynamed) or with oneColumn(without keyname) plain collection too.
   // By default all key-names used automatically as column-titles
   // and by default all keys/columns dumped out in physically order.
@@ -53,8 +53,9 @@
   //   }
   // ]
   // --------------------
-  // Last change: LV 19.05.20, 11:25:12
+  // Last change: LV 20.05.20, 17:28:12
 
+C_TEXT:C284($srcTxt;$0)
 C_COLLECTION:C1488($col;$1)
 C_TEXT:C284($nameInfo;$2)
 C_TEXT:C284($timeInfo;$3)
@@ -63,7 +64,6 @@ C_BOOLEAN:C305($isAltCall;$5)
 
 C_LONGINT:C283($i)
 C_TIME:C306($docRef)
-C_TEXT:C284($srcTxt)
 C_TEXT:C284($srcTxtStart;$srcTxtEnd)
 C_COLLECTION:C1488($colHeadRow;$colBodyRow;$colKeys;$colKeysHead)
 C_TEXT:C284($headRowTxt;$bodyRowsTxt;$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparator;$rowSeparator)
@@ -79,9 +79,7 @@ If (Count parameters:C259>0)
 Else   // ok, than use any test data
 	$col:=New collection:C1472
 	If (True:C214)
-		For ($i;1;1000)
-			$col:=yNewRandomCollection (100)
-		End for 
+		$col:=yNewRandomCollection (100)
 	Else 
 		For ($i;1;1000)
 			$col.push($i)
@@ -113,13 +111,25 @@ Case of
 		$colToAttr:=Form:C1466.colKeys
 End case 
 
+C_TEXT:C284($lineBreak)
+If (Is macOS:C1572)
+	$lineBreak:=Char:C90(Line feed:K15:40)
+Else 
+	$lineBreak:=Char:C90(Carriage return:K15:38)+Char:C90(Line feed:K15:40)
+End if 
+
 $srcTxtStart:=""
-$srcTxtStart:=$srcTxtStart+Char:C90(Line feed:K15:40)
-$srcTxtStart:=$srcTxtStart+"# "+$nameInfo+Char:C90(Line feed:K15:40)
-$srcTxtStart:=$srcTxtStart+"*"+$timeInfo+"*"+Char:C90(Line feed:K15:40)
-$srcTxtStart:=$srcTxtStart+Char:C90(Line feed:K15:40)
+$srcTxtStart:=$srcTxtStart+"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>"+$lineBreak
+$srcTxtStart:=$srcTxtStart+"<listroot>"+$lineBreak
+$srcTxtStart:=$srcTxtStart+"<metainfo>"+$lineBreak
+$srcTxtStart:=$srcTxtStart+"<listtitle>Collection: "+$nameInfo+"</listtitle>"+$lineBreak
+$srcTxtStart:=$srcTxtStart+"<timeline>"+$timeInfo+"</timeline>"+$lineBreak
+$srcTxtStart:=$srcTxtStart+"</metainfo>"+$lineBreak
+$srcTxtStart:=$srcTxtStart+"<list>"+$lineBreak
 
 $srcTxtEnd:=""
+$srcTxtEnd:=$srcTxtEnd+"</list>"+$lineBreak
+$srcTxtEnd:=$srcTxtEnd+"</listroot>"
 
 $txtResult:=""
 
@@ -129,42 +139,35 @@ $colReplace.push(New object:C1471("from";"&";"to";"&amp;"))  // "&" must be firs
 $colReplace.push(New object:C1471("from";"<";"to";"&lt;"))
 $colReplace.push(New object:C1471("from";">";"to";"&gt;"))
 $colReplace.push(New object:C1471("from";"\"";"to";"&quot;"))
-$colReplace.push(New object:C1471("from";" ";"to";"&nbsp;"))
-$colReplace.push(New object:C1471("from";"\t";"to";"&nbsp;"))
-$colReplace.push(New object:C1471("from";"#";"to";"&num;"))
-$colReplace.push(New object:C1471("from";"*";"to";"&#42;"))
-$colReplace.push(New object:C1471("from";"|";"to";"&#124;"))
-$colReplace.push(New object:C1471("from";"`";"to";"&grave;"))
-$colReplace.push(New object:C1471("from";"-";"to";"&#45;"))
-$colReplace.push(New object:C1471("from";"!";"to";"&#33;"))
-$colReplace.push(New object:C1471("from";"[";"to";"&#91;"))
-$colReplace.push(New object:C1471("from";"]";"to";"&#93;"))
-$colReplace.push(New object:C1471("from";"\r\n";"to";"<br>"))
-$colReplace.push(New object:C1471("from";"\r";"to";"<br>"))
-$colReplace.push(New object:C1471("from";"\n";"to";"<br>"))
+$colReplace.push(New object:C1471("from";"\t";"to";" "))
+$colReplace.push(New object:C1471("from";"\r\n";"to";" "))
+$colReplace.push(New object:C1471("from";"\r";"to";" "))
+$colReplace.push(New object:C1471("from";"\n";"to";" "))
 
 $headRowTxt:=""
 $colKeysHead:=yColKeysCollectionTo ($colToAttr;True:C214)  // Get active items titles
-If ($colKeysHead.length>0)
-	$rowPrefix:=""
-	$rowSuffix:="|"
-	$cellPrefix:="| "
-	$cellSuffix:=" "
-	$cellSeparator:=""
-	$rowSeparator:=Char:C90(Line feed:K15:40)
-	$headRowTxt:=$rowPrefix+$cellPrefix+$colKeysHead.join($cellSuffix+$cellSeparator+$cellPrefix)+$cellSuffix+$rowSuffix+$rowSeparator+("| :---: "*$colKeysHead.length)+"|"+$rowSeparator
+If (False:C215)
+	If ($colKeysHead.length>0)
+		$rowPrefix:="<item>"+$lineBreak
+		$rowSuffix:="</item>"+$lineBreak
+		$cellPrefix:=""
+		$cellSuffix:=""
+		$cellSeparator:=""
+		$rowSeparator:=""
+		$headRowTxt:=$rowPrefix+$cellPrefix+$colKeysHead.join($cellSuffix+$cellSeparator+$cellPrefix)+$cellSuffix+$rowSuffix+$rowSeparator
+	End if 
 End if 
 
 $bodyRowsTxt:=""
 $colKeys:=yColKeysCollectionTo ($colToAttr;False:C215)  // Get active items keys
-$rowPrefix:=""
-$rowSuffix:="|"
-$cellPrefix:="| "
-$cellSuffix:=" "
+$rowPrefix:="<item>"+$lineBreak
+$rowSuffix:="</item>"+$lineBreak
+$cellPrefix:="<itemprop key=\"###+keytitle+###\">"
+$cellSuffix:="</itemprop>"+$lineBreak
 $cellSeparator:=""
-$rowSeparator:=Char:C90(Line feed:K15:40)
+$rowSeparator:=""
 If ($colKeys.length>0)
-	$colBodyRow:=$col.map("colMapJoin";$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparator;$colReplace;$colKeys)
+	$colBodyRow:=$col.map("colMapJoin";$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparator;$colReplace;$colKeys;$colKeysHead)
 Else 
 	$colBodyRow:=$col.map("colMapJoin";$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparator;$colReplace)
 End if 
@@ -173,7 +176,7 @@ $bodyRowsTxt:=$colBodyRow.join($rowSeparator)
 $srcTxt:=$srcTxtStart+$headRowTxt+$bodyRowsTxt+$srcTxtEnd
 
 If (Not:C34($isAltCall))
-	yCreateOpenTxtDoc ($srcTxt;$nameInfo;".md")
+	yCreateOpenTxtDoc ($srcTxt;$nameInfo;".xml")
 End if 
 
 $0:=$srcTxt

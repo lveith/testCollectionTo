@@ -5,7 +5,7 @@
 	},
 	"windowSizingX": "variable",
 	"windowSizingY": "variable",
-	"windowMinWidth": 971,
+	"windowMinWidth": 891,
 	"windowMinHeight": 0,
 	"windowMaxWidth": 32767,
 	"windowMaxHeight": 32767,
@@ -38,7 +38,7 @@
 					"type": "button",
 					"text": "#",
 					"top": 1,
-					"left": 901,
+					"left": 821,
 					"width": 27,
 					"height": 24,
 					"events": [
@@ -55,7 +55,7 @@
 					"type": "button",
 					"text": "✗",
 					"top": 1,
-					"left": 934,
+					"left": 854,
 					"width": 27,
 					"height": 24,
 					"events": [
@@ -83,7 +83,7 @@
 					"top": 6,
 					"left": 9,
 					"width": 139,
-					"height": 37,
+					"height": 23,
 					"events": [
 						"onClick"
 					],
@@ -92,8 +92,8 @@
 				"List Box": {
 					"type": "listbox",
 					"left": 10,
-					"top": 244,
-					"width": 951,
+					"top": 256,
+					"width": 871,
 					"height": 386,
 					"events": [
 						"onClick",
@@ -115,6 +115,9 @@
 					"horizontalLineStroke": "#FFFFFF",
 					"verticalLineStroke": "#FFFFFF",
 					"resizingMode": "legacy",
+					"currentItemSource": "Form:C1466.myLbCurrEl",
+					"currentItemPositionSource": "Form:C1466.myLbCurrPos",
+					"selectedItemsSource": "Form:C1466.myLbCurrSel",
 					"columns": [
 						{
 							"header": {
@@ -279,7 +282,7 @@
 					"top": 6,
 					"left": 159,
 					"width": 139,
-					"height": 37,
+					"height": 23,
 					"events": [
 						"onClick"
 					],
@@ -293,7 +296,7 @@
 					"top": 6,
 					"left": 309,
 					"width": 139,
-					"height": 37,
+					"height": 23,
 					"events": [
 						"onClick"
 					],
@@ -307,7 +310,7 @@
 					"top": 6,
 					"left": 459,
 					"width": 139,
-					"height": 37,
+					"height": 23,
 					"events": [
 						"onClick"
 					],
@@ -318,7 +321,7 @@
 				"List Box1": {
 					"type": "listbox",
 					"left": 10,
-					"top": 56,
+					"top": 68,
 					"width": 366,
 					"height": 179,
 					"events": [
@@ -329,7 +332,7 @@
 					],
 					"listboxType": "collection",
 					"dataSource": "Form:C1466.colKeys",
-					"hideExtraBlankRows": true,
+					"hideExtraBlankRows": false,
 					"sizingX": "fixed",
 					"sizingY": "fixed",
 					"showFooters": false,
@@ -411,7 +414,9 @@
 							"wordwrap": "none",
 							"fontSize": 10,
 							"resizable": false,
-							"truncateMode": "withEllipsis"
+							"truncateMode": "withEllipsis",
+							"textFormat": "",
+							"entryFilter": "&\"a-z;A-Z;0-9;ä;ö;ü;ß;Ä;Ö;Ü; ;,;-;_;+;*;#;$;€;/;(;);[;];=;?;+;!;§;';\""
 						},
 						{
 							"header": {
@@ -443,68 +448,68 @@
 				},
 				"Eingabe": {
 					"type": "input",
-					"left": 512,
-					"top": 104,
+					"left": 505,
+					"top": 116,
 					"width": 367,
 					"height": 17,
 					"dataSource": "Form:C1466.listname",
 					"sizingX": "grow",
 					"entryFilter": "&\"a-z;A-Z;0-9;ä;ö;ü;ß;Ä;Ö;Ü; ;,;-;_;+;*;#;$;€;/;(;);[;];=;?;+;!;§;';\"",
-					"right": 879
+					"right": 872
 				},
 				"Text": {
 					"type": "text",
 					"text": "Name of the list",
-					"top": 104,
-					"left": 405,
+					"top": 116,
+					"left": 398,
 					"width": 102,
 					"height": 17,
 					"fontWeight": "normal"
 				},
 				"Eingabe1": {
 					"type": "input",
-					"left": 512,
-					"top": 134,
+					"left": 505,
+					"top": 146,
 					"width": 367,
 					"height": 17,
 					"dataSource": "Form:C1466.beforeTimeline",
 					"sizingX": "grow",
 					"entryFilter": "&\"a-z;A-Z;0-9;ä;ö;ü;ß;Ä;Ö;Ü; ;,;-;_;+;*;#;$;€;/;(;);[;];=;?;+;!;§;.;:;{;};';\"",
-					"right": 879
+					"right": 872
 				},
 				"Text1": {
 					"type": "text",
 					"text": "Before timeline",
-					"top": 134,
-					"left": 405,
+					"top": 146,
+					"left": 398,
 					"width": 102,
 					"height": 17,
 					"fontWeight": "normal"
 				},
 				"Eingabe3": {
 					"type": "input",
-					"left": 512,
-					"top": 164,
+					"left": 505,
+					"top": 176,
 					"width": 367,
 					"height": 17,
 					"dataSource": "Form:C1466.afterTimeline",
 					"sizingX": "grow",
 					"entryFilter": "&\"a-z;A-Z;0-9;ä;ö;ü;ß;Ä;Ö;Ü; ;,;-;_;+;*;#;$;€;/;(;);[;];=;?;+;!;§;.;:;{;};';\"",
-					"right": 879
+					"right": 872
 				},
 				"Text3": {
 					"type": "text",
 					"text": "After timeline",
-					"top": 164,
-					"left": 405,
+					"top": 176,
+					"left": 398,
 					"width": 102,
 					"height": 17,
 					"fontWeight": "normal"
 				},
 				"Eingabe4": {
 					"type": "input",
-					"left": 771,
-					"top": 56,
+					"left": 629,
+					"top": 68,
 					"width": 108,
 					"height": 17,
 					"dataSource": "Form:C1466.rowsToCreate",
@@ -518,21 +523,21 @@
 				},
 				"Text4": {
 					"type": "text",
-					"text": "How many rows should be generated next time?",
-					"top": 56,
-					"left": 471,
-					"width": 295,
+					"text": "How many rows should be generated",
+					"top": 68,
+					"left": 398,
+					"width": 229,
 					"height": 17,
 					"fontWeight": "normal",
 					"stroke": "#9437FF"
 				},
 				"Eingabe5": {
 					"type": "input",
-					"left": 831,
-					"top": 229,
-					"width": 128,
+					"left": 651,
+					"top": 241,
+					"width": 228,
 					"height": 12,
-					"dataSource": "\"rows in listbox \"+String:C10(Form:C1466.myListbox.length;\"###,###,##0\")",
+					"dataSource": "\"Rows \"+String:C10(Form:C1466.myListbox.length;\"###,###,##0\")+\" | Marked \"+String:C10(Form:C1466.myLbCurrSel.length;\"###,###,##0\")",
 					"dataSourceTypeHint": "text",
 					"stroke": "#9437FF",
 					"borderStyle": "none",
@@ -548,9 +553,9 @@
 				},
 				"Eingabe6": {
 					"type": "input",
-					"left": 512,
-					"top": 191,
-					"width": 438,
+					"left": 505,
+					"top": 203,
+					"width": 358,
 					"height": 12,
 					"dataSource": "yGetTimeline ",
 					"dataSourceTypeHint": "text",
@@ -565,7 +570,7 @@
 					"textAlign": "left",
 					"sizingX": "grow",
 					"fontSize": 10,
-					"right": 950
+					"right": 863
 				},
 				"oBtnColToTSV": {
 					"type": "button",
@@ -573,7 +578,7 @@
 					"top": 6,
 					"left": 609,
 					"width": 139,
-					"height": 37,
+					"height": 23,
 					"events": [
 						"onClick"
 					],
@@ -584,10 +589,10 @@
 				"oBtnGenData": {
 					"type": "button",
 					"text": "Generate data",
-					"top": 6,
-					"left": 769,
-					"width": 112,
-					"height": 37,
+					"top": 65,
+					"left": 748,
+					"width": 119,
+					"height": 23,
 					"events": [
 						"onClick"
 					],
@@ -595,6 +600,34 @@
 					"class": "",
 					"stroke": "#9437FF",
 					"fontStyle": "italic"
+				},
+				"oBtnColToXML": {
+					"type": "button",
+					"text": "collection to XML",
+					"top": 36,
+					"left": 9,
+					"width": 139,
+					"height": 23,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/oBtnColToXML.4dm",
+					"class": "",
+					"stroke": "automatic"
+				},
+				"oBtnColToJson": {
+					"type": "button",
+					"text": "collection to Json",
+					"top": 36,
+					"left": 159,
+					"width": 139,
+					"height": 23,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/oBtnColToJson.4dm",
+					"class": "",
+					"stroke": "automatic"
 				}
 			},
 			"entryOrder": [
@@ -611,7 +644,9 @@
 				"Eingabe4",
 				"Eingabe5",
 				"Eingabe6",
-				"oBtnColToTSV"
+				"oBtnColToTSV",
+				"oBtnColToXML",
+				"oBtnColToJson"
 			]
 		}
 	],

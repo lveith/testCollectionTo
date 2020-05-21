@@ -25,25 +25,25 @@ Case of
 				: ($vlUserChoice=1)  // "Generate a list of 4D commands and constants"
 					Form:C1466.myListbox:=y4DCmdAndConst 
 					Form:C1466.listname:=yGet4DVersionShortname +" Commands and Constants"
-					OBJECT SET TITLE:C194(*;"oColumnHead1";"Serial no")
+					OBJECT SET TITLE:C194(*;"oColumnHead1";"SerialNo")
 					OBJECT SET TITLE:C194(*;"oColumnHead2";"Name")
-					OBJECT SET TITLE:C194(*;"oColumnHead3";"Token id")
+					OBJECT SET TITLE:C194(*;"oColumnHead3";"TokenId")
 					OBJECT SET TITLE:C194(*;"oColumnHead4";"Type")
 					OBJECT SET TITLE:C194(*;"oColumnHead5";"Theme")
-					OBJECT SET TITLE:C194(*;"oColumnHead6";"name:token")
-					OBJECT SET TITLE:C194(*;"oColumnHead7";"cmdThreadsafe/constValInfo")
+					OBJECT SET TITLE:C194(*;"oColumnHead6";"NameToken")
+					OBJECT SET TITLE:C194(*;"oColumnHead7";"cmdThreadsafe_constValInfo")
 					OBJECT SET TITLE:C194(*;"oColumnHead8";"cmdSyntax")
 					OBJECT SET TITLE:C194(*;"oColumnHead9";"cmdDesc")
 					
 				: ($vlUserChoice=2)  // "Generate a list of only 4D commands"
 					Form:C1466.myListbox:=y4DCmdAndConst (True:C214;False:C215)
 					Form:C1466.listname:=yGet4DVersionShortname +" Commands"
-					OBJECT SET TITLE:C194(*;"oColumnHead1";"Serial no")
+					OBJECT SET TITLE:C194(*;"oColumnHead1";"SerialNo")
 					OBJECT SET TITLE:C194(*;"oColumnHead2";"Name")
-					OBJECT SET TITLE:C194(*;"oColumnHead3";"Token id")
+					OBJECT SET TITLE:C194(*;"oColumnHead3";"TokenId")
 					OBJECT SET TITLE:C194(*;"oColumnHead4";"Type")
 					OBJECT SET TITLE:C194(*;"oColumnHead5";"Theme")
-					OBJECT SET TITLE:C194(*;"oColumnHead6";"name:token")
+					OBJECT SET TITLE:C194(*;"oColumnHead6";"NameToken")
 					OBJECT SET TITLE:C194(*;"oColumnHead7";"threadsafe")
 					OBJECT SET TITLE:C194(*;"oColumnHead8";"cmdSyntax")
 					OBJECT SET TITLE:C194(*;"oColumnHead9";"cmdDesc")
@@ -51,12 +51,12 @@ Case of
 				: ($vlUserChoice=3)  // "Generate a list of only 4D constants"
 					Form:C1466.myListbox:=y4DCmdAndConst (False:C215;True:C214)
 					Form:C1466.listname:=yGet4DVersionShortname +" Constants"
-					OBJECT SET TITLE:C194(*;"oColumnHead1";"Serial no")
+					OBJECT SET TITLE:C194(*;"oColumnHead1";"SerialNo")
 					OBJECT SET TITLE:C194(*;"oColumnHead2";"Name")
-					OBJECT SET TITLE:C194(*;"oColumnHead3";"Token id")
+					OBJECT SET TITLE:C194(*;"oColumnHead3";"TokenId")
 					OBJECT SET TITLE:C194(*;"oColumnHead4";"Type")
 					OBJECT SET TITLE:C194(*;"oColumnHead5";"Theme")
-					OBJECT SET TITLE:C194(*;"oColumnHead6";"name:token")
+					OBJECT SET TITLE:C194(*;"oColumnHead6";"NameToken")
 					OBJECT SET TITLE:C194(*;"oColumnHead7";"constValInfo")
 					OBJECT SET TITLE:C194(*;"oColumnHead8";"---")
 					OBJECT SET TITLE:C194(*;"oColumnHead9";"---")

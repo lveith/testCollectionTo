@@ -1,7 +1,7 @@
 //%attributes = {}
   // PM: "collectionToHtml" (new LV 20.05.20, 08:13:36)
   // $1 - C_COLLECTION - SrcCollectionToDumpOut
-  // $2 - C_TEXT -       DocType | ".html" | ".csv" | ".md" | ".txt" | ".tsv" |
+  // $2 - C_TEXT -       DocType | ".html" | ".csv" | ".md" | ".txt" | ".tsv" | ".xml" | ".json" |
   // $3 - C_TEXT -       NameOflist for titles and filename (when empty than auto created)
   // $4 - C_TEXT -       Timelinetext (when empty than auto created)
   // $5 - C_TEXT -       TimelineBefore (optional)
@@ -58,7 +58,7 @@
   // Last change: LV 20.05.20, 14:13:34
 
 C_COLLECTION:C1488($col;$1)
-C_TEXT:C284($type;$2)
+C_TEXT:C284($docType;$2)
 C_TEXT:C284($nameInfo;$3)
 C_TEXT:C284($timeInfo;$4)
 C_TEXT:C284($timeInfoBefore;$5)
@@ -86,27 +86,8 @@ Else   // ok, than use any test data
 End if 
 
 If (Count parameters:C259>1)
-	$type:=$2
+	$docType:=$2
 End if 
-Case of 
-	: ($type=".html")  // ok
-	: ($type=".csv")  // ok
-	: ($type=".md")  // ok
-	: ($type=".txt")  // ok
-	: ($type=".tsv")  // ok
-	: ($type="html")  // Adjust
-		$type:=".html"
-	: ($type="csv")  // Adjust
-		$type:=".csv"
-	: ($type="md")  // Adjust
-		$type:=".md"
-	: ($type="txt")  // Adjust
-		$type:=".txt"
-	: ($type="tsv")  // Adjust
-		$type:=".tsv"
-	Else 
-		$type:=".html"  // default
-End case 
 
 If (Count parameters:C259>2)
 	$nameInfo:=$3
@@ -126,8 +107,6 @@ If (Count parameters:C259>5)
 	$timeInfoAfter:=$6
 End if 
 
-$timeInfo:=yGetTimeline ($timeInfo;$timeInfoBefore;$timeInfoAfter)
-
 Case of 
 	: (Count parameters:C259>6)
 		$colToAttr:=$7
@@ -139,26 +118,35 @@ Case of
 		$colToAttr:=Form:C1466.colKeys
 End case 
 
+$docType:=collectionToGetDocType ($docType)
+
+$timeInfo:=yGetTimeline ($timeInfo;$timeInfoBefore;$timeInfoAfter)
 
 Case of 
-	: ($type=".html")
+	: ($docType=".html")
 		$srcTxt:=collectionToHtml ($col;$nameInfo;$timeInfo;$colToAttr;True:C214)
 		
-	: ($type=".csv")
+	: ($docType=".csv")
 		$srcTxt:=collectionToCsv ($col;$nameInfo;$timeInfo;$colToAttr;True:C214)
 		
-	: ($type=".md")
+	: ($docType=".md")
 		$srcTxt:=collectionToMd ($col;$nameInfo;$timeInfo;$colToAttr;True:C214)
 		
-	: ($type=".txt")
+	: ($docType=".txt")
 		$srcTxt:=collectionToTxt ($col;$nameInfo;$timeInfo;$colToAttr;True:C214)
 		
-	: ($type=".tsv")
+	: ($docType=".tsv")
 		$srcTxt:=collectionToTsv ($col;$nameInfo;$timeInfo;$colToAttr;True:C214)
+		
+	: ($docType=".xml")
+		$srcTxt:=collectionToXml ($col;$nameInfo;$timeInfo;$colToAttr;True:C214)
+		
+	: ($docType=".json")
+		$srcTxt:=collectionToJson ($col;$nameInfo;$timeInfo;$colToAttr;True:C214)
 		
 	Else   // not supported type
 		$srcTxt:="###errror: not supported type!###"
-		ALERT:C41("Sorry, type "+$type+" is not supported!")
+		ALERT:C41("Sorry, type "+$docType+" is not supported!")
 		
 End case 
 
@@ -168,15 +156,8 @@ Case of
 		ALERT:C41("Sorry, results empty and it makes no sense to create a empty document!")
 		
 	Else 
-		ON ERR CALL:C155("onErrDocument")
-		$docRef:=Create document:C266($nameInfo+$type)
-		If (OK=1)  // If document has been created successfully
-			CLOSE DOCUMENT:C267($docRef)
-			TEXT TO DOCUMENT:C1237(Document;$srcTxt)
-			OPEN URL:C673(Document)
-		Else 
-			ALERT:C41("Error: Any problem by Create document!")
-		End if 
+		yCreateOpenTxtDoc ($srcTxt;$nameInfo;$docType)
+		
 End case 
 
   // - EOF -

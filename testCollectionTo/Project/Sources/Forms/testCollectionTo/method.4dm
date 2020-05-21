@@ -3,6 +3,8 @@
 Case of 
 	: (Form event code:C388=On Load:K2:1)
 		
+		Form:C1466.myLbCurrSel:=New collection:C1472
+		
 		  // ...fill any test-data in Listbox
 		Form:C1466.myListbox:=yNewRandomCollection (1000;New collection:C1472("column1";"column2";"column3";"column4";"column5";"column6";"column7";"column8";"column9");"column1")
 		
