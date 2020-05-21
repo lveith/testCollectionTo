@@ -20,6 +20,8 @@ $col.map("colMapJoin";$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparat
 - Collection to MD
 - Collection to TXT
 - Collection to TSV
+- Collection to XML
+- Collection to JSON
 
 ### Call Example
 ```
