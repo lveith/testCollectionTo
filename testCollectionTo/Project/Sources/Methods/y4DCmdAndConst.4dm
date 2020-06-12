@@ -151,7 +151,7 @@ If ($withCmdList)
 																																	If ($attributes.threadsafe=Null:C1517)
 																																		$txtAttr:="?"
 																																	Else 
-																																		$txtAttr:=String:C10(Bool:C1537($attributes.threadsafe ?? 0))
+																																		$txtAttr:=String:C10(Num:C11(Bool:C1537($attributes.threadsafe ?? 0));"True;False;False")
 																																	End if 
 																																	$resultCol.push(New object:C1471("column1";$resultCol.length+1;"column2";$commandName;"column3";$id;"column4";"command";"column5";$theme;"column6";$contents;"column7";$txtAttr;"column8";$attributes.cmdSyntax;"column9";$attributes.cmdDesc))
 																																	APPEND TO ARRAY:C911($arrCmdNo;Num:C11($cmdNo))
@@ -202,7 +202,7 @@ If ($withCmdList)
 						  // $attributes.threadsafe:=$threadsafe
 						  // $attributes.cmdSyntax:=$lastCmdTxt
 						  // $attributes.cmdDesc:=$cmdTxt
-						$resultCol.push(New object:C1471("column1";$resultCol.length+1;"column2";$commandName;"column3";$id;"column4";"command";"column5";$theme;"column6";$contents;"column7";String:C10(Bool:C1537($threadsafe ?? 0));"column8";"";"column9";""))
+						$resultCol.push(New object:C1471("column1";$resultCol.length+1;"column2";$commandName;"column3";$id;"column4";"command";"column5";$theme;"column6";$contents;"column7";String:C10(Num:C11(Bool:C1537($threadsafe ?? 0));"True;False;False");"column8";"";"column9";""))
 					End if 
 				End if 
 			End if 
