@@ -152,7 +152,7 @@
 							"dataSourceTypeHint": "text",
 							"width": 231,
 							"minWidth": 165,
-							"maxWidth": 300,
+							"maxWidth": 500,
 							"wordwrap": "none"
 						},
 						{
@@ -449,7 +449,7 @@
 				"Eingabe": {
 					"type": "input",
 					"left": 505,
-					"top": 116,
+					"top": 110,
 					"width": 367,
 					"height": 17,
 					"dataSource": "Form:C1466.listname",
@@ -460,7 +460,7 @@
 				"Text": {
 					"type": "text",
 					"text": "Name of the list",
-					"top": 116,
+					"top": 110,
 					"left": 398,
 					"width": 102,
 					"height": 17,
@@ -469,7 +469,7 @@
 				"Eingabe1": {
 					"type": "input",
 					"left": 505,
-					"top": 146,
+					"top": 140,
 					"width": 367,
 					"height": 17,
 					"dataSource": "Form:C1466.beforeTimeline",
@@ -480,7 +480,7 @@
 				"Text1": {
 					"type": "text",
 					"text": "Before timeline",
-					"top": 146,
+					"top": 140,
 					"left": 398,
 					"width": 102,
 					"height": 17,
@@ -489,7 +489,7 @@
 				"Eingabe3": {
 					"type": "input",
 					"left": 505,
-					"top": 176,
+					"top": 170,
 					"width": 367,
 					"height": 17,
 					"dataSource": "Form:C1466.afterTimeline",
@@ -500,7 +500,7 @@
 				"Text3": {
 					"type": "text",
 					"text": "After timeline",
-					"top": 176,
+					"top": 170,
 					"left": 398,
 					"width": 102,
 					"height": 17,
@@ -554,7 +554,7 @@
 				"Eingabe6": {
 					"type": "input",
 					"left": 505,
-					"top": 203,
+					"top": 197,
 					"width": 358,
 					"height": 12,
 					"dataSource": "yGetTimeline ",
@@ -628,6 +628,24 @@
 					"method": "ObjectMethods/oBtnColToJson.4dm",
 					"class": "",
 					"stroke": "automatic"
+				},
+				"oBtnGenData1": {
+					"type": "button",
+					"text": "Reduce selection to marked lines",
+					"top": 213,
+					"left": 696,
+					"width": 183,
+					"height": 23,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/oBtnGenData1.4dm",
+					"class": "",
+					"stroke": "#9437FF",
+					"fontStyle": "italic",
+					"fontSize": 10,
+					"sizingX": "move",
+					"focusable": false
 				}
 			},
 			"entryOrder": [
@@ -646,7 +664,8 @@
 				"Eingabe6",
 				"oBtnColToTSV",
 				"oBtnColToXML",
-				"oBtnColToJson"
+				"oBtnColToJson",
+				"oBtnGenData1"
 			]
 		}
 	],
