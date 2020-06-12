@@ -1,5 +1,5 @@
 //%attributes = {}
-  // PM: "collectionToHtml" (new LV 20.05.20, 08:13:36)
+  // PM: "collectionTo" (new LV 20.05.20, 08:13:36)
   // $1 - C_COLLECTION - SrcCollectionToDumpOut
   // $2 - C_TEXT -       DocType | ".html" | ".csv" | ".md" | ".txt" | ".tsv" | ".xml" | ".json" |
   // $3 - C_TEXT -       NameOflist for titles and filename (when empty than auto created)
