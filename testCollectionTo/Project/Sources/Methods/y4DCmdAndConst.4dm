@@ -127,6 +127,8 @@ If ($withCmdList)
 																															
 																														: ($cmdValKind="desc@")  // command description
 																															If ($lastCmdNo=$cmdNo)
+																																$threadsafe:=-9
+																																$theme:=""
 																																$attributes:=New object:C1471("threadsafe";Null:C1517)
 																																$commandName:=Command name:C538(Num:C11($cmdNo);$threadsafe;$theme)
 																																If (OK=1)  //command number exists for "Command name"
@@ -140,6 +142,24 @@ If ($withCmdList)
 																																	Else 
 																																		$commandName:=$lastCmdTxt
 																																	End if 
+																																	Case of 
+																																		: ($commandName="collection.@")
+																																			$threadsafe:=1
+																																			$attributes.threadsafe:=$threadsafe
+																																			$theme:="Collections"
+																																		: ($commandName="formula.call@")
+																																			$threadsafe:=1
+																																			$attributes.threadsafe:=$threadsafe
+																																			$theme:="Formulas"
+																																		: ($commandName="formula.apply@")
+																																			$threadsafe:=1
+																																			$attributes.threadsafe:=$threadsafe
+																																			$theme:="Formulas"
+																																		: ($commandName="dataStore.getRequestLog@")
+																																			$threadsafe:=0
+																																			$attributes.threadsafe:=$threadsafe
+																																			$theme:="ORDA - DataStore"
+																																	End case 
 																																	$contents:=$commandName
 																																	
 																																End if 
