@@ -127,9 +127,9 @@ If ($withCmdList)
 																															
 																														: ($cmdValKind="desc@")  // command description
 																															If ($lastCmdNo=$cmdNo)
+																																$attributes:=New object:C1471("threadsafe";Null:C1517)
 																																$threadsafe:=-9
 																																$theme:=""
-																																$attributes:=New object:C1471("threadsafe";Null:C1517)
 																																$commandName:=Command name:C538(Num:C11($cmdNo);$threadsafe;$theme)
 																																If (OK=1)  //command number exists for "Command name"
 																																	$attributes.threadsafe:=$threadsafe
@@ -206,6 +206,8 @@ If ($withCmdList)
 		$commandNum:=$commandNum+1
 		$pos:=Find in array:C230($arrCmdNo;$commandNum)
 		If ($pos<1)
+			$threadsafe:=-9
+			$theme:=""
 			$commandName:=Command name:C538($commandNum;$threadsafe;$theme)
 			If (OK=1)  //command number exists
 				If (Length:C16($commandName)>0)  //command is not disabled
