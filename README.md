@@ -2,15 +2,15 @@
 Only a test example for collection convert to HTML, CSV, MD, TXT and more with **collection.map("colMapJoin")**
 
 ### collections of values (one not named column)
-```
+```4d
 $col.map("colMapJoin";$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparator;$colReplace)
 ```
-```
+```4d
 $col.map("colMapJoin";$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparator)
 ```
 
 ### collections of objects (multi columns with nameKey)
-```
+```4d
 $col.map("colMapJoin";$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparator;$colReplace;$colKeys)
 ```
 
@@ -24,7 +24,7 @@ $col.map("colMapJoin";$rowPrefix;$rowSuffix;$cellPrefix;$cellSuffix;$cellSeparat
 - Collection to JSON
 
 ### Call Example
-```
+```4d
 C_COLLECTION($myCollectionToDumpOut)
 C_TEXT($docType)
 C_TEXT($myListName)
