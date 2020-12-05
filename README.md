@@ -94,3 +94,8 @@ End case
 ```
 
 ![github-small](https://user-images.githubusercontent.com/65073460/82457013-39efdb00-9ab5-11ea-8e59-b179a933102b.png)
+
+### Example html result lists
+[4Dv18R3Commands_716CMDsNotThreadsafe](https://lveith.github.io/testCollectionTo/ExampleResultLists/4Dv18R3Commands_716CMDsNotThreadsafe.html)
+
+[4Dv18R3Commands_CMDsMemoryLeaks](https://lveith.github.io/testCollectionTo/ExampleResultLists/4Dv18R3Commands_CMDsMemoryLeaks.html)
