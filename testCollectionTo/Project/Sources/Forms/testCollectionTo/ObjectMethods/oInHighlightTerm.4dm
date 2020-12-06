@@ -26,10 +26,10 @@ Case of
 			$liveTextLower:=Lowercase:C14($liveText)
 			$liveTextUL:=Uppercase:C13($liveText[[1]])+Lowercase:C14(Substring:C12($liveText; 2))
 			
-			$newText:="<span style=\"color: red; background-color: yellow;\">"+$liveText+"</span>"
-			$newTextUpper:="<span style=\"color: red; background-color: yellow;\">"+$liveTextUpper+"</span>"
-			$newTextLower:="<span style=\"color: red; background-color: yellow;\">"+$liveTextLower+"</span>"
-			$newTextUL:="<span style=\"color: red; background-color: yellow;\">"+$liveTextUL+"</span>"
+			$newText:="<<<<<<<"+$liveText+">>>>>>>"
+			$newTextUpper:="<<<<<<<"+$liveTextUpper+">>>>>>>"
+			$newTextLower:="<<<<<<<"+$liveTextLower+">>>>>>>"
+			$newTextUL:="<<<<<<<"+$liveTextUL+">>>>>>>"
 			
 			For each ($objItem; Form:C1466.myListbox)
 				For ($i; 1; 9)
@@ -39,6 +39,8 @@ Case of
 						$objItem[$keyName]:=Replace string:C233($objItem[$keyName]; $liveTextUpper; $newTextUpper; *)
 						$objItem[$keyName]:=Replace string:C233($objItem[$keyName]; $liveTextLower; $newTextLower; *)
 						$objItem[$keyName]:=Replace string:C233($objItem[$keyName]; $liveTextUL; $newTextUL; *)
+						$objItem[$keyName]:=Replace string:C233($objItem[$keyName]; "<<<<<<<"; "<span style=\"color: red; background-color: yellow;\">")
+						$objItem[$keyName]:=Replace string:C233($objItem[$keyName]; ">>>>>>>"; "</span>")
 					End if 
 				End for 
 			End for each 
