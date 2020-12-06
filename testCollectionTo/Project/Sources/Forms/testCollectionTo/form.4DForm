@@ -135,7 +135,8 @@
 							"width": 80,
 							"minWidth": 60,
 							"maxWidth": 300,
-							"wordwrap": "none"
+							"wordwrap": "none",
+							"styledText": true
 						},
 						{
 							"header": {
@@ -153,7 +154,8 @@
 							"width": 231,
 							"minWidth": 165,
 							"maxWidth": 500,
-							"wordwrap": "none"
+							"wordwrap": "none",
+							"styledText": true
 						},
 						{
 							"header": {
@@ -171,7 +173,8 @@
 							"width": 80,
 							"minWidth": 60,
 							"maxWidth": 300,
-							"wordwrap": "none"
+							"wordwrap": "none",
+							"styledText": true
 						},
 						{
 							"header": {
@@ -189,7 +192,8 @@
 							"width": 80,
 							"minWidth": 60,
 							"maxWidth": 300,
-							"wordwrap": "none"
+							"wordwrap": "none",
+							"styledText": true
 						},
 						{
 							"header": {
@@ -207,7 +211,8 @@
 							"width": 165,
 							"minWidth": 80,
 							"maxWidth": 300,
-							"wordwrap": "none"
+							"wordwrap": "none",
+							"styledText": true
 						},
 						{
 							"header": {
@@ -223,7 +228,8 @@
 							},
 							"wordwrap": "none",
 							"width": 220,
-							"minWidth": 80
+							"minWidth": 80,
+							"styledText": true
 						},
 						{
 							"header": {
@@ -240,7 +246,8 @@
 							"width": 170,
 							"wordwrap": "none",
 							"minWidth": 60,
-							"textAlign": "center"
+							"textAlign": "center",
+							"styledText": true
 						},
 						{
 							"header": {
@@ -256,7 +263,8 @@
 							},
 							"width": 737,
 							"wordwrap": "none",
-							"minWidth": 80
+							"minWidth": 80,
+							"styledText": true
 						},
 						{
 							"header": {
@@ -272,7 +280,8 @@
 							},
 							"width": 999,
 							"wordwrap": "none",
-							"minWidth": 80
+							"minWidth": 80,
+							"styledText": true
 						}
 					]
 				},
@@ -629,7 +638,7 @@
 					"class": "",
 					"stroke": "automatic"
 				},
-				"oBtnGenData1": {
+				"oBtnReduceToMarked": {
 					"type": "button",
 					"text": "Reduce selection to marked lines",
 					"top": 213,
@@ -639,13 +648,53 @@
 					"events": [
 						"onClick"
 					],
-					"method": "ObjectMethods/oBtnGenData1.4dm",
+					"method": "ObjectMethods/oBtnReduceToMarked.4dm",
 					"class": "",
 					"stroke": "#9437FF",
 					"fontStyle": "italic",
 					"fontSize": 10,
 					"sizingX": "move",
 					"focusable": false
+				},
+				"oBtnFilter": {
+					"type": "button",
+					"text": "Filter",
+					"top": 213,
+					"left": 632,
+					"width": 57,
+					"height": 23,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/oBtnFilter.4dm",
+					"class": "",
+					"stroke": "#9437FF",
+					"fontStyle": "italic",
+					"fontSize": 10,
+					"sizingX": "move",
+					"focusable": false
+				},
+				"oInHighlightTerm": {
+					"type": "input",
+					"left": 505,
+					"top": 216,
+					"width": 116,
+					"height": 17,
+					"sizingX": "grow",
+					"stroke": "#ff0000",
+					"fill": "#ffff00",
+					"placeholder": "highlightTerm",
+					"dataSource": "Form:C1466.highlightTerm",
+					"events": [
+						"onLoad",
+						"onLosingFocus",
+						"onGettingFocus",
+						"onBeforeKeystroke",
+						"onDataChange",
+						"onAfterKeystroke",
+						"onAfterEdit"
+					],
+					"method": "ObjectMethods/oInHighlightTerm.4dm"
 				}
 			},
 			"entryOrder": [
@@ -665,10 +714,20 @@
 				"oBtnColToTSV",
 				"oBtnColToXML",
 				"oBtnColToJson",
-				"oBtnGenData1"
+				"oBtnReduceToMarked",
+				"oBtnFilter",
+				"oInHighlightTerm"
 			]
 		}
 	],
 	"method": "method.4dm",
-	"menuBar": "menubar #2"
+	"menuBar": "menubar #2",
+	"geometryStamp": 187,
+	"editor": {
+		"activeView": "View 1",
+		"defaultView": "View 1",
+		"views": {
+			"View 1": {}
+		}
+	}
 }
