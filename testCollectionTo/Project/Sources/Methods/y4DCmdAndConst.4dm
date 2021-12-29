@@ -242,7 +242,7 @@ If ($withConstList)
 			$constantNum:=$constantNum+1
 			$constantToken:=":K"+String:C10($constantThemeNum)+":"+String:C10($constantNum)
 			$constantName:=Parse formula:C1576($constantToken)
-			If ((Length:C16($constantName)>0) & ($constantName#("‘k"+String:C10($constantThemeNum)+";"+String:C10($constantNum)+"‘")))
+			If ((Length:C16($constantName)>0) & ($constantName#("‘k"+String:C10($constantThemeNum)+";"+String:C10($constantNum)+"‘")) & ($constantName#(":K"+String:C10($constantThemeNum)+" : "+String:C10($constantNum))))
 				$contents:=$constantName+":K"+String:C10($constantThemeNum)+":"+String:C10($constantNum)
 				Case of 
 					: ($constantThemeNum=1)
