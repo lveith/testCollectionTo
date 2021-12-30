@@ -259,7 +259,7 @@ If ($withConstList)
 		$constantThemeNum:=$constantThemeNum+1
 		Repeat 
 			$constantNum:=$constantNum+1
-			$constantToken:=":K"+String:C10($constantThemeNum)+":"+String:C10($constantNum)
+			$constantToken:="xy:K"+String:C10($constantThemeNum)+":"+String:C10($constantNum)
 			$constantName:=Parse formula:C1576($constantToken)
 			If ((Length:C16($constantName)>0) & ($constantName#("‘k"+String:C10($constantThemeNum)+";"+String:C10($constantNum)+"‘")) & ($constantName#(":K"+String:C10($constantThemeNum)+" : "+String:C10($constantNum))))
 				$contents:=$constantName+"xy:K"+String:C10($constantThemeNum)+":"+String:C10($constantNum)
