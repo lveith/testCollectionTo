@@ -1,5 +1,5 @@
 //%attributes = {}
-  // PM: "collectionToHtml" (new LV 19.05.20, 10:07:41)
+  // PM: "collectionToHtml" (new LV 19.05.2020)
   // $1 - C_COLLECTION - Collection to dump out as HTML-Table
   // $2 - C_TEXT - Name of the list for titles and filename (when empty than auto created)
   // $3 - C_TEXT - Timelinetext (when empty than auto created)
@@ -53,7 +53,7 @@
   //   }
   // ]
   // --------------------
-  // Last change: LV 21.05.20, 15:44:57
+  // Last change: LV 30.12.2021
 
 C_TEXT:C284($srcTxt;$0)
 C_COLLECTION:C1488($col;$1)
@@ -150,9 +150,10 @@ Else   // styleTheme-2
 End if 
 
 $srcTxtStart:=$srcTxtStart+"</style>"
+$srcTxtStart:=$srcTxtStart+"<script>function filterLines(mySearchTerm, myInputEl) {var i, myLines;if (typeof mySearchTerm !== 'string') mySearchTerm = '';mySearchTerm=mySearchTerm.replace(/\\s+/g, ' ').trim().toLowerCase();if (typeof myInputEl !== 'object') {} else if (myInputEl."+"tagName.toLowerCase() !== 'input') {} else {if (mySearchTerm === '') {myInputEl.style.backgroundColor='';} else {myInputEl.style.backgroundColor='rgb(232, 240, 207)';}}myLines = document.querySelectorAll('tr.collectionLine');for (i = 0; i < myLines.le"+"ngth; i++) {if (mySearchTerm === '') {myLines[i].style.display='';myLines[i].style.backgroundColor='';} else if (myLines[i].textContent.replace(/\\s+/g, ' ').toLowerCase().includes(mySearchTerm)) {myLines[i].style.display='';myLines[i].style.background"+"Color='rgb(232, 240, 207)';} else {myLines[i].style.display='none';}}}</script>"
 $srcTxtStart:=$srcTxtStart+"</head>"
 $srcTxtStart:=$srcTxtStart+"<body class=\"collectionToHTML\">"
-$srcTxtStart:=$srcTxtStart+"<div class=\"header\"><div class=\"headerContent\">Collection: "+$nameInfo+"<br><i class=\"timeLine\">"+$timeInfo+"</i><br></div></div>"
+$srcTxtStart:=$srcTxtStart+"<div class=\"header\"><div class=\"headerContent\">Collection: "+$nameInfo+"<br><i class=\"timeLine\">"+$timeInfo+"</i><input type=\"text\" id=\"myFilter\" name=\"myFilter\" style=\"right: 20px; position: absolute;\" placeholder=\"...search\" oninput=\"filterLines(this.value, this); return false\"><br></div></div>"
 $srcTxtStart:=$srcTxtStart+"<div class=\"content\">"
 $srcTxtStart:=$srcTxtStart+"<table class=\"collectionTable\">"
 
